@@ -1,0 +1,1208 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"shel",
+				"shell"
+			],
+			[
+				"or",
+				"order"
+			],
+			[
+				"cou",
+				"count"
+			],
+			[
+				"o",
+				"ordersCountArray"
+			],
+			[
+				"order",
+				"startOrderSimulation"
+			],
+			[
+				"_s",
+				"_startOrderSimulation"
+			],
+			[
+				"_sp",
+				"_splitCount"
+			],
+			[
+				"pro",
+				"productCountList"
+			],
+			[
+				"end",
+				"endTime"
+			],
+			[
+				"processs",
+				"processSetting"
+			],
+			[
+				"star",
+				"startSinglePort"
+			],
+			[
+				"ser",
+				"serialPortList"
+			],
+			[
+				"tim",
+				"timeStamp"
+			],
+			[
+				"msg",
+				"msges"
+			],
+			[
+				"le",
+				"len"
+			],
+			[
+				"la",
+				"lastIndex"
+			],
+			[
+				"ma",
+				"matches"
+			],
+			[
+				"na",
+				"name"
+			],
+			[
+				"cla",
+				"classes"
+			],
+			[
+				"_us",
+				"_userName"
+			],
+			[
+				"_cl",
+				"_classID"
+			],
+			[
+				"_clss",
+				"_classID"
+			],
+			[
+				"con",
+				"Content"
+			],
+			[
+				"err",
+				"err"
+			],
+			[
+				"blo",
+				"blocked"
+			],
+			[
+				"bl",
+				"blockSpeaking"
+			],
+			[
+				"clase",
+				"classSet"
+			],
+			[
+				"new",
+				"newClassApplied"
+			],
+			[
+				"cli",
+				"classID"
+			],
+			[
+				"clad",
+				"classDBFindOne"
+			],
+			[
+				"txtgh",
+				"txtghName"
+			],
+			[
+				"txt",
+				"txtCreator"
+			],
+			[
+				"tx",
+				"txtClassID"
+			],
+			[
+				"cl",
+				"classID"
+			],
+			[
+				"path",
+				"pathRoute"
+			],
+			[
+				"user",
+				"userID"
+			],
+			[
+				"classdb",
+				"classDBFindOne"
+			],
+			[
+				"us",
+				"username"
+			],
+			[
+				"_u",
+				"_user"
+			],
+			[
+				"usedb",
+				"userDBFind"
+			],
+			[
+				"usd",
+				"userDBUpdate"
+			],
+			[
+				"usef",
+				"userDBFindOne"
+			],
+			[
+				"ghID",
+				"ghID"
+			],
+			[
+				"userd",
+				"userDBFind"
+			],
+			[
+				"spe",
+				"speakerState"
+			],
+			[
+				"gh",
+				"ghIDInfo"
+			],
+			[
+				"_gh",
+				"_ghIDInfo"
+			],
+			[
+				"app",
+				"appendDevice"
+			],
+			[
+				"regse",
+				"regSetClassTip"
+			],
+			[
+				"get",
+				"getCommandType"
+			],
+			[
+				"com",
+				"commandTypeInfo"
+			],
+			[
+				"fin",
+				"findWhere"
+			],
+			[
+				"regS",
+				"regSetName"
+			],
+			[
+				"_re",
+				"_receivedMsg"
+			],
+			[
+				"_c",
+				"_car"
+			],
+			[
+				"bag",
+				"bagage"
+			],
+			[
+				"ob",
+				"objError"
+			],
+			[
+				"obj",
+				"objOk"
+			],
+			[
+				"ba",
+				"bagageID"
+			],
+			[
+				"getb",
+				"getBagageStatus"
+			],
+			[
+				"remo",
+				"removedBagage"
+			],
+			[
+				"er",
+				"error"
+			],
+			[
+				"q",
+				"Q"
+			],
+			[
+				"bagdb",
+				"bagagedb"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"_ca",
+				"_carlist"
+			],
+			[
+				"carl",
+				"carListResBack"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"v",
+				"versionDate"
+			],
+			[
+				"do",
+				"downloadMap"
+			],
+			[
+				"dow",
+				"downloadTimeStamp"
+			],
+			[
+				"poi",
+				"point"
+			],
+			[
+				"em",
+				"emit"
+			],
+			[
+				"ima",
+				"imageName"
+			],
+			[
+				"badb",
+				"bagagedb"
+			],
+			[
+				"ev",
+				"eventRemoveBagage"
+			],
+			[
+				"ins",
+				"insertBagageCarBindingRecord2DB"
+			],
+			[
+				"getCid",
+				"getBindedCarIDOver"
+			],
+			[
+				"str",
+				"startMnting"
+			],
+			[
+				"st",
+				"startBagageMnting"
+			],
+			[
+				"sta",
+				"startMnting"
+			],
+			[
+				"dat",
+				"dateStart"
+			],
+			[
+				"ca",
+				"carID"
+			],
+			[
+				"getCar",
+				"getCarBagageMap"
+			],
+			[
+				"che",
+				"checkChangeTrend"
+			],
+			[
+				"tr",
+				"trendsRise"
+			],
+			[
+				"M",
+				"MAX_HISTORY_YEAR"
+			],
+			[
+				"he",
+				"heapTotal"
+			],
+			[
+				"meu",
+				"memuse"
+			],
+			[
+				"mem",
+				"memoryLasted"
+			],
+			[
+				"me",
+				"memoryLasted"
+			],
+			[
+				"um",
+				"usedMemPercent"
+			],
+			[
+				"se",
+				"session"
+			],
+			[
+				"car",
+				"carID"
+			],
+			[
+				"sel",
+				"selectCars"
+			],
+			[
+				"el",
+				"earliestPoint"
+			],
+			[
+				"_p",
+				"_point"
+			],
+			[
+				"db",
+				"dbInfo"
+			],
+			[
+				"ge",
+				"getCarListOfSpecifiedUser"
+			],
+			[
+				"lo",
+				"localEP"
+			],
+			[
+				"te",
+				"testA"
+			],
+			[
+				"carty",
+				"carTypeList"
+			],
+			[
+				"usn",
+				"username"
+			],
+			[
+				"log",
+				"logout"
+			],
+			[
+				"use",
+				"user"
+			],
+			[
+				"add",
+				"addUser"
+			],
+			[
+				"nu",
+				"numberReplaced"
+			],
+			[
+				"fo",
+				"footer"
+			],
+			[
+				"cont",
+				"container"
+			],
+			[
+				"win",
+				"windowHeight"
+			],
+			[
+				"ja",
+				"javascripts"
+			],
+			[
+				"ch",
+				"check_geolocation_support"
+			],
+			[
+				"mo",
+				"mobileClient"
+			],
+			[
+				"del",
+				"deleted"
+			],
+			[
+				"sim",
+				"simpleParser"
+			],
+			[
+				"pa",
+				"parserType"
+			],
+			[
+				"_read",
+				"_readerPortNameMap"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"iv",
+				"inventoryRecords"
+			],
+			[
+				"inv",
+				"inventoryRecords"
+			],
+			[
+				"mini",
+				"minInventorySettings"
+			],
+			[
+				"br",
+				"broadcastInventory"
+			],
+			[
+				"ty",
+				"typeName"
+			],
+			[
+				"find",
+				"findWhere"
+			],
+			[
+				"rea",
+				"readTagList"
+			],
+			[
+				"read",
+				"readTagList"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "routes/index.js",
+			"settings":
+			{
+				"buffer_size": 6092,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 1268,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/timeFormat.js",
+			"settings":
+			{
+				"buffer_size": 1048,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/orderSimulation.js",
+			"settings":
+			{
+				"buffer_size": 1795,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/index.ejs",
+			"settings":
+			{
+				"buffer_size": 1086,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n/*\n * GET home page.\n */\nvar timeFormater 	   = require('./timeFormat').getCurrentTimeCombining;\nvar _ = require(\"underscore\");\n\nvar countEachProducingAction = 3;\n\nep.tail('orderSimulationOK', _startProductionPlan);\n\nfunction _startProductionPlan(_ordersCountArray){\n\n}\n\n\n",
+			"file": "routes/productionPlan.js",
+			"file_size": 222,
+			"file_write_time": 1404472943000000,
+			"settings":
+			{
+				"buffer_size": 273,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 247.0,
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/ssor/Documents/program/golang/hello.go",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/test/xmlParser.js",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classManageChangepwdIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/setUserStateIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/userManageLeft.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/userManageChangepwdIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classManage.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/setSpeakerIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/userManageTopIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classManageLeft.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classManageClassIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classApplyIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classManageTopIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/routes/user.js",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/app.js",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classManageTop.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/public/javascripts/timeFormat.js",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/public/stylesheets/site.min.css",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/login2.ejs",
+		"/Users/ssor/Documents/program/nodejs/winxintucao/views/login.ejs",
+		"/Users/ssor/Documents/program/nodejs/deviceStateMonitor/serverSide/views/index.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/api.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/app.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/index.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/errorPage.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/main.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/version.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/top.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/chooseCarToMnt.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/left.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/left_admin.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/carIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/startMnting.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/userIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/changepwd.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/mobileIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/startReplaying.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/bagageIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/uploadgps.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/bagageStatusIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/bagageLoginIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/startBagageMnting.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/setRoutePara.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/mobile.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/public/javascripts/tools.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/defCar.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/car.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/bagage.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/index.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/saveCarPosImg.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/authorize.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/user.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/public/stylesheets/index-theme.css",
+		"/Users/ssor/Documents/program/nodejs/webgis/public/stylesheets/skin.css",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/right.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/checkMemory.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/timeFormat.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/public/javascripts/timeFormat.js",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/mobileIndex2.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/uploadgps2.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/views/f7form.ejs",
+		"/Users/ssor/Documents/program/nodejs/webgis/public/stylesheets/framework7.css",
+		"/Users/ssor/Desktop/webgis/Tpl/Monitor/startMnting.html",
+		"/Users/ssor/Desktop/webgis/Tpl/Monitor/chooseCartoMnt.html",
+		"/Users/ssor/Desktop/webgis/Tpl/Mobile/index.html",
+		"/Users/ssor/Desktop/webgis/Tpl/Monitor/index.html",
+		"/Users/ssor/Desktop/webgis/Tpl/Monitor/top.html",
+		"/Users/ssor/Desktop/webgis/Tpl/Monitor/left.html",
+		"/Users/ssor/Desktop/webgis/Tpl/Monitor/right.html",
+		"/Users/ssor/Documents/program/nodejs/webgis/routes/epc.js",
+		"/Users/ssor/Desktop/webgis/Tpl/UserManagement/UserIndex.html",
+		"/Users/ssor/Documents/program/nodejs/weathermonitor/public/javascripts/tools.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/routes/timeFormat.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/carbinet3.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/carbinet2.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/test/compressor.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/routes/dataParser-min.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/node_modules/request/request.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/node_modules/forever-agent/index.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/node_modules/request/index.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/node_modules/eventproxy/lib/eventproxy.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/hcDemo.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/index.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/carbinetFront.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/carbinetFront5.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/carbinetFront3.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/carbinetFront2.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/routes/simulator.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/test/test2.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/test/test.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/routes/dataParserInventory.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/theme.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/routes/dataParserFront.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/node_modules/ws/lib/WebSocket.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/node_modules/ws/index.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/wsTestInventory.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/routes/wsServer.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/routes/udpServer.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/app.js",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/views/carbinet.ejs",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/untitled.sublime-project",
+		"/Users/ssor/Documents/program/nodejs/carbinetShow/public/stylesheets/flat-ui.css",
+		"/Users/ssor/Documents/program/nodejs/cmdCenter/views/index.ejs",
+		"/Users/ssor/Documents/program/nodejs/microblog/routes/user.js",
+		"/Users/ssor/Documents/program/nodejs/microblog/node_modules/user.js",
+		"/Users/ssor/Documents/program/nodejs/microblog/views/head.ejs",
+		"/Users/ssor/Documents/program/nodejs/microblog/views/_index.ejs",
+		"/Users/ssor/Documents/program/nodejs/microblog/node_modules/db.js",
+		"/Users/ssor/Documents/program/nodejs/microblog/settings.js",
+		"/Users/ssor/Documents/program/nodejs/microblog/node_modules/ejs/examples/client.html",
+		"/Users/ssor/Documents/program/nodejs/microblog/views/layout.ejs",
+		"/Users/ssor/Documents/program/nodejs/package.json",
+		"/Users/ssor/Documents/program/nodejs/microblog/package.json",
+		"/Users/ssor/Documents/program/nodejs/microblog/views/index.jade",
+		"/Users/ssor/Documents/program/nodejs/microblog/app.js",
+		"/Users/ssor/Documents/program/nodejs/microblog/routes/index.js",
+		"/Users/ssor/Documents/program/nodejs/microblog/views/index.ejs"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"_port",
+			"_portName",
+			"_count",
+			"737",
+			"leftCount",
+			"startOrderSimulation",
+			"star",
+			"startOrderSimulation",
+			"startSinglePort",
+			"data",
+			"Port",
+			"port",
+			"parseMultyCmds",
+			"stroreUserInfo",
+			"_user",
+			"initialDB",
+			"blockState",
+			"userName",
+			"ghID",
+			"blockState",
+			"classInfo",
+			"initialDB",
+			"div",
+			"initialDB",
+			"classID",
+			"creator",
+			"classID",
+			"tip",
+			"classID",
+			"ghName",
+			"classID",
+			"classApply",
+			"txtghRegName",
+			"password",
+			"username",
+			"login",
+			"Login",
+			"login",
+			"true",
+			"false",
+			"initialDB",
+			"userID",
+			"classManageUserIndex",
+			"classManageLeft",
+			"user",
+			"classRoute",
+			"class",
+			"classManageChangepwdIndex",
+			"classManageUserIndex",
+			"classManageTopIndex",
+			"classManageLeft",
+			"userManage",
+			"initialDB",
+			"stroreUserInfo",
+			"getCommandType",
+			"stroreUserInfo",
+			"initialDB",
+			"user",
+			"speakerState",
+			"ghID",
+			"_id",
+			"user",
+			"classInfo",
+			"ghInfo",
+			"initialClass",
+			"stroreUserInfo",
+			"managerList",
+			"setSpeaker",
+			"userList4Speaker",
+			"userList",
+			"false",
+			"speakerState",
+			"speakerName",
+			"setSpeaker",
+			"setSpeakerIndex",
+			"setUserStateIndex",
+			"setSpeakerIndex",
+			"true",
+			"false",
+			"setSpoker",
+			"userID",
+			"ghIDInfo",
+			"classManageTopIndex",
+			"classManageChangepwdIndex",
+			"classManageChangepwd",
+			"classManageTop",
+			"classManageChangepwd",
+			"classManageLeft",
+			"ghInfo",
+			"5",
+			"row_container",
+			"appendDevice",
+			"deviceInfo",
+			"regClassTip",
+			"helpTip",
+			"regHelpTip",
+			"stroreUserInfo",
+			"regTip",
+			"reg",
+			"isLegel",
+			"listeningPort",
+			"wsServerTagRead",
+			"checkMsgState",
+			"getCarList",
+			"getCarListOfSpecifiedUser",
+			"getPointListFromDB",
+			"getCarListOver",
+			"_removeBagageCarBinding",
+			"statelistAll",
+			"obj",
+			"timeFormater",
+			"removeBagageCarBinding",
+			"removedBagage",
+			"deleteRows",
+			"bagageID",
+			"authorize",
+			"validateUser",
+			"userModule",
+			"getPointListFromDB",
+			"initiallatestCarPointList",
+			"initialCarPointDB",
+			"EventProxy",
+			"typeInfoDB",
+			"EventProxy",
+			"249",
+			"getBindedCarID",
+			"eventproxy",
+			"EventProxy"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "routes/index.js",
+					"settings":
+					{
+						"buffer_size": 6092,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								843,
+								843
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 434.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app.js",
+					"settings":
+					{
+						"buffer_size": 1268,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								530,
+								530
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "routes/timeFormat.js",
+					"settings":
+					{
+						"buffer_size": 1048,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								973,
+								978
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 87.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "routes/orderSimulation.js",
+					"settings":
+					{
+						"buffer_size": 1795,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								941,
+								941
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 8.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/index.ejs",
+					"settings":
+					{
+						"buffer_size": 1086,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								962,
+								962
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "routes/productionPlan.js",
+					"settings":
+					{
+						"buffer_size": 273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								268,
+								268
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.9o:///Users/ssor/Documents/program/golang":
+	{
+		"height": 190.0
+	},
+	"output.MarGo-output":
+	{
+		"height": 114.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"winxintucao/views/classManageChangepwdIndex.ejs"
+			],
+			[
+				"app",
+				"winxintucao/app.js"
+			],
+			[
+				"inde",
+				"winxintucao/routes/index.js"
+			],
+			[
+				"change",
+				"winxintucao/views/classManageChangepwdIndex.ejs"
+			],
+			[
+				"lef",
+				"winxintucao/views/classManageLeft.ejs"
+			],
+			[
+				"spe",
+				"winxintucao/views/setSpeakerIndex.ejs"
+			],
+			[
+				"a",
+				"winxintucao/app.js"
+			],
+			[
+				"ve",
+				"views/version.ejs"
+			],
+			[
+				"api",
+				"routes/api.js"
+			],
+			[
+				"in",
+				"routes/index.js"
+			],
+			[
+				"ch",
+				"/Users/ssor/Documents/program/nodejs/webgis/views/changepwd.ejs"
+			],
+			[
+				"us",
+				"/Users/ssor/Documents/program/nodejs/webgis/routes/user.js"
+			],
+			[
+				"de",
+				"/Users/ssor/Documents/program/nodejs/webgis/routes/defCar.js"
+			],
+			[
+				"ca",
+				"/Users/ssor/Documents/program/nodejs/webgis/routes/car.js"
+			],
+			[
+				"usei",
+				"/Users/ssor/Desktop/webgis/Tpl/UserManagement/UserIndex.html"
+			],
+			[
+				"u",
+				"/Users/ssor/Documents/program/nodejs/webgis/routes/user.js"
+			],
+			[
+				"he",
+				"/Users/ssor/Documents/program/nodejs/microblog/views/head.ejs"
+			],
+			[
+				"h",
+				"/Users/ssor/Documents/program/nodejs/microblog/views/head.ejs"
+			],
+			[
+				"p",
+				"/Users/ssor/Documents/program/nodejs/microblog/models/post.js"
+			],
+			[
+				"po",
+				"/Users/ssor/Documents/program/nodejs/microblog/models/post.js"
+			],
+			[
+				"i",
+				"/Users/ssor/Documents/program/nodejs/microblog/routes/index.js"
+			],
+			[
+				"s",
+				"/Users/ssor/Documents/program/nodejs/microblog/views/say.ejs"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 219.0,
+	"status_bar_visible": true
+}
