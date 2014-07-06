@@ -33,13 +33,13 @@ exports.orderSimulation = function(req, res){
 // exports.parseSingleCmd = parseSingleCmd;
 // exports.parseMultyCmds = parseMultyCmds;
 
-processSettings.push({flag: 'btn001', processName: '流程一', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
-processSettings.push({flag: 'btn002', processName: '流程二', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
+processSettings.push({flag: 'btn000', processName: 'Total Process', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
+processSettings.push({flag: 'btn001', processName: 'Section1', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
+processSettings.push({flag: 'btn002', processName: 'Section2', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
 
-// serialPortList.push({portName: '/dev/cu.usbmodem14211', port: null, data: ''});
-// serialPortList.push({portName: '/dev/cu.usbmodem14241', port: null, data: ''});
 
-var portsInSys = shell.ls('/dev/cu.usbmodem*');
+// var portsInSys = shell.ls('/dev/cu.usbmodem*');//mac
+var portsInSys = _.union(shell.ls('/dev/ttyUSB*'), shell.ls('/dev/ttyACM*'));//linux
 console.dir(portsInSys);
 _.each(portsInSys, function(_portName){
 	serialPortList.push({portName: _portName, port: null, data: ''});
