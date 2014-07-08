@@ -10,116 +10,141 @@ var shell = require('shelljs');
 
 require('./orderSimulation');
 require('./productionPlan');
+var productionProcess = require('./productionProcess');
 // var serialPortName = '/dev/ttyUSB0';
 // var serialPortName = '/dev/ttyACM0';
 // var serialPortName = '/dev/tty.usbmodem1421';
 // var serialPortName = '/dev/cu.usbmodem1421';
-// var destIP = '';
-// var destIP = '192.168.48.109';
-// var destPort = 10000;
-// var destPort = 5301;
-// var data = '';
-// var port = null;
 
 
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 exports.orderSimulation = function(req, res){
+	configButtons();
+	var addedSerialPortList = _.filter(serialPortList, function(_serialPort){
+		return true;
+		return _serialPort.added == true;
+	})
+	startSerialPortListening(addedSerialPortList, productionProcess.updateProcessState);
 	ep.emit('startOrderSimulation');
 	res.render('index', { title: 'Express' });
 }
-
-// exports.parseSingleCmd = parseSingleCmd;
-// exports.parseMultyCmds = parseMultyCmds;
+exports.configButtons = function(req, res){
+	configButtons();
+	res.render('index', { title: 'Express' });
+}
+exports.configButtonOK = function(req, res){
+	configButtonOK();
+	res.render('index', { title: 'Express' });
+}
 
 processSettings.push({flag: 'btn000', processName: 'Total Process', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
-processSettings.push({flag: 'btn001', processName: 'Section1', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
-processSettings.push({flag: 'btn002', processName: 'Section2', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
+processSettings.push({flag: 'btn001', processName: 'Section1', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: '', lastProcess: false});
+processSettings.push({flag: 'btn002', processName: 'Section2', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: '', lastProcess: true});
 
+var allFindedSerialPortList = [];
+/*
+	ep.tail('startRead', handleInput);
+	process.on('exit', function(){
+		console.log('exit ...');
+	});
+	read('input something: ');
+*/
 
-// var portsInSys = shell.ls('/dev/cu.usbmodem*');//mac
-var portsInSys = _.union(shell.ls('/dev/ttyUSB*'), shell.ls('/dev/ttyACM*'));//linux
-console.dir(portsInSys);
-_.each(portsInSys, function(_portName){
-	serialPortList.push({portName: _portName, port: null, data: ''});
-})
-// ep.tail('epc', function(_epc){
-// 	var client = dgram.createSocket("udp4");
-// 	console.log(('will copy to '+ destIP + ':'+destPort).data);
-// 	var msg = '['+ flag + ',' + _epc + ']';
-// 	client.send(msg, 0, msg.length, destPort, destIP, function(err, bytes) {
-// 	  client.close();
-// 	});
-// });
-ep.tail('startRead', handleInput);
-process.on('exit', function(){
-	console.log('exit ...');
-});
-read('input something: ');
-start();
+// start();
+// setInterval(checkReaderState, 5000);
 
-setInterval(checkReaderState, 5000);
-
-function start(){
-	_.each(serialPortList, _startSinglePort);
-
-	// console.log('initialized serialPort ' + serialPortName + ' ...');
-	// var checkState = ['AA', '02', '00', '55'];
-	// var startInventory = ['AA', '03', '11', '03', '55'];
-	// var array = [];
-	// for(var i = 0; i < startInventory.length; i++){
-	// 	array[i] = parseInt(startInventory[i], 16);
-	// }
-	// console.log(array);	
-	// var buffer = new Buffer(array);
-	// console.log(buffer);
-	// port.write(buffer);	
+//开始配置系统相关按钮
+function configButtons(){
+	var portsFindInSys = _.union(shell.ls('/dev/cu.usbmodem*'), shell.ls('/dev/cu.*USB*'));//mac
+	// var portsFindInSys = _.union(shell.ls('/dev/ttyUSB*'), shell.ls('/dev/ttyACM*'));//linux
+	console.log('发现连接有以下设备：'.info);
+	console.dir(portsFindInSys);
+	console.log('按动按钮，将设备接入到系统中'.info);
+	_.each(portsFindInSys, function(_portName){
+		serialPortList.push({portName: _portName, port: null, data: '', added: false});
+	});
+	startSerialPortListening(serialPortList, _configButtonMsgHandler);
 }
-function _startSinglePort(_serialPort){
-		if(_serialPort.port != null) return;
-		_serialPort.port = new SerialPort({serialPort:_serialPort.portName, baudRate: 9600});
-		_serialPort.port.initialize();
-		_serialPort.port.on('error', function(){
-			console.log('reader error'.error);
+//设备监测完毕，对不属于本系统的设备解除端口占用
+function configButtonOK(){
+	_.each(serialPortList, function(_serialPort){
+		if(_serialPort.added == false){
+			console.log(('将关闭串口 ' + _serialPort.portName).warn);
+			_serialPort.port.close();
 			_serialPort.port = null;
-		});
-		_serialPort.port.on('close', function(){
-			console.log('reader close'.error);
-			_serialPort.port = null;
-		});	
-		_serialPort.port.on("data", function(chunk) {
-		    // console.log("Incoming:", chunk);
-		    var tempData = chunk.toString('ascii');//if chunk is transfered from string
-		    // var tempData = chunk.toString('hex');
-		    _serialPort.data += tempData;
-			var msges = parseMultyCmds(_serialPort.data);
-			_.each(msges, _updateProcessState);
-		    // console.dir(matches);
-		    var lastIndex = _serialPort.data.lastIndexOf(']');
-		    if(lastIndex >= 0){
-			    _serialPort.data = _serialPort.data.substr(lastIndex + 1);
-			    // console.log('after =>  ' + data);
-		    }
-		    // data = parseMultyCmds(data);
-		});			
+		}
+	})
 }
-function _updateProcessState(_msg){
-	var processSetting = _.findWhere(processSettings, {flag: _msg.flag});
-	if(processSetting != null){
-		if(_msg.state == 'on'){
-			processSetting.startStamp = _msg.stamp;
-			processSetting.startTime = _msg.time;
-		}else if(_msg.state == 'off'){
-			processSetting.endStamp = _msg.stamp;
-			processSetting.endTime = _msg.time;
-			processSetting.timeConsumed = processSetting.endStamp - processSetting.startStamp;
-			console.log(processSetting.processName + ' from ' + processSetting.startTime + ' to ' + processSetting.endTime);
-			console.log('共耗时 ' + processSetting.timeConsumed/1000 + ' 秒');
+//传入信息，开始处理
+function _configButtonMsgHandler(_msg, _port){
+	var serialPort = _.findWhere(serialPortList, {portName: _port.portName});
+	if(serialPort == null){
+		console.log('sys error!!'.error);
+	}else{
+		if(serialPort.added == false){
+			console.log(('监测到按钮 ' + _msg.flag + '(' + _port.portName + ') , 将被加入到系统设备中').info);
+			serialPort.added = true;
+		}else{
+			console.log(('监测到按钮 ' + _msg.flag + '(' + _port.portName + ') 被触发').info);
 		}
 	}
-	// console.dir(processSetting);
 }
+function startSerialPortListening(_serialPortList, _handler){
+	_.each(_serialPortList, function(_serialPort){
+		_serialPort.handler = _handler;
+		if(_serialPort.port == null){
+			_startSinglePort(_serialPort);
+		}
+	});
+/*
+	console.log('initialized serialPort ' + serialPortName + ' ...');
+	var checkState = ['AA', '02', '00', '55'];
+	var startInventory = ['AA', '03', '11', '03', '55'];
+	var array = [];
+	for(var i = 0; i < startInventory.length; i++){
+		array[i] = parseInt(startInventory[i], 16);
+	}
+	console.log(array);	
+	var buffer = new Buffer(array);
+	console.log(buffer);
+	port.write(buffer);	
+*/
+}
+function _startSinglePort(_serialPort){
+	_serialPort.port = new SerialPort({serialPort:_serialPort.portName, baudRate: 9600});
+	_serialPort.port.initialize();
+
+	_serialPort.port.on('error', function(){
+		console.log('reader error'.error);
+		_serialPort.port = null;
+	});
+
+	_serialPort.port.on('close', function(){
+		console.log('reader close'.error);
+		_serialPort.port = null;
+	});	
+
+	_serialPort.port.on("data", function(chunk) {
+	    // console.log("Incoming:", chunk);
+	    var tempData = chunk.toString('ascii');//if chunk is transfered from string
+	    _serialPort.data += tempData;
+		var msges = parseMultyCmds(_serialPort.data);
+		if(_serialPort.handler != null){
+			_.each(msges, function(_msg){
+				_serialPort.handler(_msg, _serialPort);
+			});
+		}
+	    var lastIndex = _serialPort.data.lastIndexOf(']');
+	    if(lastIndex >= 0){
+		    console.log(('data to trip =>  ' + _serialPort.data).data);
+		    _serialPort.data = _serialPort.data.substr(lastIndex + 1);
+	    }
+	    // data = parseMultyCmds(data);
+	});			
+}
+
 function getNewMsg(_raw){
 	var len = _raw.length;
 	var timeStamp = timeFormater();
@@ -135,6 +160,16 @@ function parseMultyCmds(_rawData){
     });
     return msges;
 }
+function checkReaderState(){
+	_.each(serialPortList, function(_serialPort){
+		if(_serialPort.added == true){
+			if(_serialPort.port != null) return;
+			_startSinglePort(_serialPort);
+		}
+	});
+}
+
+/*
 function handleInput(_input){
 	// console.log(_input);
 	if(_input == "123\n"){
@@ -145,9 +180,7 @@ function handleInput(_input){
 	}
 	// read('', handleInput);
 }
-function checkReaderState(){
-	_.each(serialPortList, _startSinglePort);
-}
+
 function read(prompt, callback) {
     // process.stdout.write(prompt + ':');
     // process.stdin.resume();
@@ -158,33 +191,5 @@ function read(prompt, callback) {
         ep.emit('startRead', chunk);
     });
 }
+*/
 
-
-function parseSingleCmd(_cmd){
-    // console.log('=> ' + _cmd);
-    //clear ff
-    _cmd = _cmd.replace(/ffff/g, 'ff');
-    // console.log('=> ' + _cmd);
-
-    _cmd = _cmd.replace(/ffaa/g, 'aa');
-    // console.log('=> ' + _cmd);
-
-    _cmd = _cmd.replace(/ff55/g, '55');
-    console.log('=> ' + _cmd);
-
-    // standard cmd string 
-    // if(_cmd.length == 38)
-    {
-    	console.log('_cmd.indexOf(aa) = ' + _cmd.indexOf('aa'));
-    	console.log('_cmd.lastIndexOf(55) = ' + _cmd.lastIndexOf('55'));
-    	console.log('_cmd.length = ' + _cmd.length);
-    		
-        if((_cmd.indexOf('aa') == 0) && (_cmd.lastIndexOf('55') == (_cmd.length -2))){
-            var epc = _cmd.substr(12, _cmd.length - 14);
-            console.log(epc);
-            ep.emit('epc', epc);
-            return epc;
-        }
-    }
-    return null;
-}
