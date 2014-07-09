@@ -4,12 +4,60 @@
 		"selected_items":
 		[
 			[
-				"shel",
-				"shell"
+				"add",
+				"addSerialPortList"
+			],
+			[
+				"ser",
+				"serialPortList"
+			],
+			[
+				"_por",
+				"_portName"
+			],
+			[
+				"con",
+				"configButtons"
 			],
 			[
 				"or",
-				"order"
+				"orders"
+			],
+			[
+				"_set",
+				"_setProcessStopInfo"
+			],
+			[
+				"pro",
+				"productionProcessStartStamp"
+			],
+			[
+				"prost",
+				"productionProcessStopStamp"
+			],
+			[
+				"produ",
+				"productionProcessStartTime"
+			],
+			[
+				"timf",
+				"timeFormater"
+			],
+			[
+				"iv",
+				"inventory"
+			],
+			[
+				"inv",
+				"inventory"
+			],
+			[
+				"_sp",
+				"_splitedCount"
+			],
+			[
+				"shel",
+				"shell"
 			],
 			[
 				"cou",
@@ -28,14 +76,6 @@
 				"_startOrderSimulation"
 			],
 			[
-				"_sp",
-				"_splitCount"
-			],
-			[
-				"pro",
-				"productCountList"
-			],
-			[
 				"end",
 				"endTime"
 			],
@@ -46,10 +86,6 @@
 			[
 				"star",
 				"startSinglePort"
-			],
-			[
-				"ser",
-				"serialPortList"
 			],
 			[
 				"tim",
@@ -90,10 +126,6 @@
 			[
 				"_clss",
 				"_classID"
-			],
-			[
-				"con",
-				"Content"
 			],
 			[
 				"err",
@@ -432,10 +464,6 @@
 				"user"
 			],
 			[
-				"add",
-				"addUser"
-			],
-			[
 				"nu",
 				"numberReplaced"
 			],
@@ -484,54 +512,50 @@
 				"color"
 			],
 			[
-				"iv",
-				"inventoryRecords"
-			],
-			[
-				"inv",
-				"inventoryRecords"
-			],
-			[
 				"mini",
 				"minInventorySettings"
-			],
-			[
-				"br",
-				"broadcastInventory"
-			],
-			[
-				"ty",
-				"typeName"
-			],
-			[
-				"find",
-				"findWhere"
-			],
-			[
-				"rea",
-				"readTagList"
-			],
-			[
-				"read",
-				"readTagList"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "routes/index.js",
+			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 6092,
+				"buffer_size": 1529,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app.js",
+			"file": "routes/index.js",
 			"settings":
 			{
-				"buffer_size": 1268,
+				"buffer_size": 6010,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/orderSimulation.js",
+			"settings":
+			{
+				"buffer_size": 4331,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/productionPlan.js",
+			"settings":
+			{
+				"buffer_size": 1926,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/productionProcess.js",
+			"settings":
+			{
+				"buffer_size": 2537,
 				"line_ending": "Unix"
 			}
 		},
@@ -544,29 +568,18 @@
 			}
 		},
 		{
-			"file": "routes/orderSimulation.js",
+			"file": "views/deviceConfig.ejs",
 			"settings":
 			{
-				"buffer_size": 1795,
+				"buffer_size": 6196,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "views/index.ejs",
+			"file": "routes/wsServer.js",
 			"settings":
 			{
-				"buffer_size": 1086,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "\n/*\n * GET home page.\n */\nvar timeFormater 	   = require('./timeFormat').getCurrentTimeCombining;\nvar _ = require(\"underscore\");\n\nvar countEachProducingAction = 3;\n\nep.tail('orderSimulationOK', _startProductionPlan);\n\nfunction _startProductionPlan(_ordersCountArray){\n\n}\n\n\n",
-			"file": "routes/productionPlan.js",
-			"file_size": 222,
-			"file_write_time": 1404472943000000,
-			"settings":
-			{
-				"buffer_size": 273,
+				"buffer_size": 2185,
 				"line_ending": "Unix"
 			}
 		}
@@ -574,7 +587,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 247.0,
+		"height": 375.0,
 		"selected_items":
 		[
 			[
@@ -603,6 +616,9 @@
 	},
 	"file_history":
 	[
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/carbinet2.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/index.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/routes/timeFormat.js",
 		"/Users/ssor/Documents/program/golang/hello.go",
 		"/Users/ssor/Documents/program/nodejs/winxintucao/test/xmlParser.js",
 		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classManageChangepwdIndex.ejs",
@@ -737,6 +753,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"querystring",
+			"planStore",
+			"addSerialPortList",
+			"configButtonOK",
+			"portsInSys",
+			"_resetProcessRecord",
+			"_order",
+			"orderStore",
+			"handleNewOrder",
+			"orders",
+			"ordersCountArray",
+			"_startOrderSimulation",
+			"_publish",
+			"_publishOrder",
+			"_startOrderSimulation",
 			"_port",
 			"_portName",
 			"_count",
@@ -849,22 +880,7 @@
 			"obj",
 			"timeFormater",
 			"removeBagageCarBinding",
-			"removedBagage",
-			"deleteRows",
-			"bagageID",
-			"authorize",
-			"validateUser",
-			"userModule",
-			"getPointListFromDB",
-			"initiallatestCarPointList",
-			"initialCarPointDB",
-			"EventProxy",
-			"typeInfoDB",
-			"EventProxy",
-			"249",
-			"getBindedCarID",
-			"eventproxy",
-			"EventProxy"
+			"removedBagage"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -882,49 +898,23 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 6,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "routes/index.js",
-					"settings":
-					{
-						"buffer_size": 6092,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								843,
-								843
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 434.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "app.js",
 					"settings":
 					{
-						"buffer_size": 1268,
+						"buffer_size": 1529,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								530,
-								530
+								78,
+								90
 							]
 						],
 						"settings":
@@ -940,7 +930,114 @@
 					"type": "text"
 				},
 				{
+					"buffer": 1,
+					"file": "routes/index.js",
+					"settings":
+					{
+						"buffer_size": 6010,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3102,
+								3102
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 870.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
 					"buffer": 2,
+					"file": "routes/orderSimulation.js",
+					"settings":
+					{
+						"buffer_size": 4331,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								264,
+								264
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "routes/productionPlan.js",
+					"settings":
+					{
+						"buffer_size": 1926,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								709,
+								709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 14.0,
+						"translation.y": 1.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "routes/productionProcess.js",
+					"settings":
+					{
+						"buffer_size": 2537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								769,
+								776
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "routes/timeFormat.js",
 					"settings":
 					{
@@ -951,8 +1048,8 @@
 						"selection":
 						[
 							[
-								973,
-								978
+								927,
+								935
 							]
 						],
 						"settings":
@@ -967,46 +1064,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "routes/orderSimulation.js",
+					"buffer": 6,
+					"file": "views/deviceConfig.ejs",
 					"settings":
 					{
-						"buffer_size": 1795,
+						"buffer_size": 6196,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								941,
-								941
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 8.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "views/index.ejs",
-					"settings":
-					{
-						"buffer_size": 1086,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								962,
-								962
+								1175,
+								1175
 							]
 						],
 						"settings":
@@ -1016,25 +1086,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 191.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "routes/productionPlan.js",
+					"buffer": 7,
+					"file": "routes/wsServer.js",
 					"settings":
 					{
-						"buffer_size": 273,
+						"buffer_size": 2185,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								268,
-								268
+								898,
+								898
 							]
 						],
 						"settings":
@@ -1043,7 +1113,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 280.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

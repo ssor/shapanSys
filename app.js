@@ -6,6 +6,8 @@
 serialPortList = [];
 processSettings = [];
 
+deviceConfig = '/deviceConfig';
+
 var colors = require('colors');
 
 colors.setTheme({
@@ -29,7 +31,12 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
+var wsServer = require('./routes/wsServer');
+
 var app = express();
+
+var server = wsServer.startWebSocketServer(app);
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -49,12 +56,13 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/deviceConfig', routes.deviceConfig);
 app.get('/orderSimulation', routes.orderSimulation);
 app.get('/configButtons', routes.configButtons);
 app.get('/configButtonOK', routes.configButtonOK);
 
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+server.listen(app.get('port'), function(){
   console.log('ShaPan server listening on port ' + app.get('port'));
 });

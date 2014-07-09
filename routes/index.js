@@ -20,6 +20,10 @@ var productionProcess = require('./productionProcess');
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
+exports.deviceConfig = function(req, res){
+  res.render('deviceConfig');
+
+}
 exports.orderSimulation = function(req, res){
 	configButtons();
 	var addedSerialPortList = _.filter(serialPortList, function(_serialPort){
@@ -31,13 +35,15 @@ exports.orderSimulation = function(req, res){
 	res.render('index', { title: 'Express' });
 }
 exports.configButtons = function(req, res){
-	configButtons();
+	// configButtons();
 	res.render('index', { title: 'Express' });
 }
 exports.configButtonOK = function(req, res){
 	configButtonOK();
 	res.render('index', { title: 'Express' });
 }
+ep.tail('configButtons', configButtons);
+
 
 processSettings.push({flag: 'btn000', processName: 'Total Process', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
 processSettings.push({flag: 'btn001', processName: 'Section1', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: '', lastProcess: false});
@@ -86,8 +92,10 @@ function _configButtonMsgHandler(_msg, _port){
 		if(serialPort.added == false){
 			console.log(('监测到按钮 ' + _msg.flag + '(' + _port.portName + ') , 将被加入到系统设备中').info);
 			serialPort.added = true;
+			ep.emit('broadcastInfo', {flag: _msg.flag, cmd: 'added', url: deviceConfig});
 		}else{
 			console.log(('监测到按钮 ' + _msg.flag + '(' + _port.portName + ') 被触发').info);
+			ep.emit('broadcastInfo', {flag: _msg.flag, cmd: 'repeat', url: deviceConfig});
 		}
 	}
 }
