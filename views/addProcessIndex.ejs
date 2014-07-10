@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>添加生产流程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">    
+    <link href="/dataTable/jquery.dataTables.css" rel="stylesheet" media="screen">    
+    <style type="text/css">
+      .row{
+        margin-top: 20px;
+      }
+
+    </style>
+    <!-- // <script data-main="javascripts/main" src="/javascripts/require.js"></script> -->
+    <script type="text/javascript" src = "/javascripts/jquery.js"></script>
+    <script type="text/javascript" src = "/javascripts/underscore.js"></script>
+    <script type="text/javascript">
+        var wsUri = 'ws:' + window.location.href.substring(window.location.protocol.length) + '';
+        var cmds = [];
+
+        $(document).ready(function() {
+          $('#inputProcessIndex').val(1);
+
+            // hideTip();
+            createWebSocket();
+        });
+        function submitProcessInfo(){
+          var processIndex = $('#inputProcessIndex').val();
+          var processName = $('#inputProcessName').val();
+          var processNote = $('#inputNote').val();
+          var b = processName != null && processName.length > 0
+                  && processNote != null && processNote.length > 0;
+          if(b == false){
+            layer.alert('信息填写不完全，请补充完整！', 3);
+            return;
+          }
+          var processInfo = {index: processIndex, name: processName, note: processNote};
+          $.post('../addProcessInfo', processInfo, function(data){
+            data = JSON.parse(data);
+            if(data.code == 0){
+              layer.alert('流程已经成功添加！', 1);
+            }else if(data.code == 1){
+              layer.alert(data.message);
+            }
+          })
+        }
+        function createWebSocket() {
+            websocket = new WebSocket(wsUri);
+            websocket.onopen = function (evt) { onOpen(evt) };
+            websocket.onclose = function (evt) { onClose(evt) };
+            websocket.onmessage = function (evt) { onMessage(evt) };
+            websocket.onerror = function (evt) { onError(evt) };
+        }
+        function onMessage(evt) {
+            var _cmd = JSON.parse(evt.data);
+            console.log(_cmd);
+            if(_cmd.type == null || _cmd.type == 'normal'){
+                if(_cmd.state == 'on'){
+                  updateDevice({flag: _cmd.flag, imgSrc: '/images/buttonGreen.png', btnName: _cmd.btnName});
+                }else{
+                  updateDevice({flag: _cmd.flag, imgSrc: '/images/buttonRed.png', btnName: _cmd.btnName});
+                }   
+            }
+        }   
+        function updateDevice(_cmd){
+            $('#imgBtn').attr('src', _cmd.imgSrc);
+            var txt = _cmd.btnName == null ? '':_cmd.btnName;
+            $('#txtBtn').text(txt);
+        }
+        function onOpen(evt) {
+          console.log('websocket open');
+          websocket.send('');
+        }
+        function onClose(evt) {
+          console.warn('websocket closed');
+        }
+        function onError(evt) {
+          console.error('websocket error');
+        }    
+    </script>
+  </head>
+  <body style="margin-top: 30px;">
+    <div style="text-align: center; font-size: 20px; margin-bottom: 10px;">填写新流程的信息</div>
+    <div class="container" >
+
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+          <input type="number" class="form-control" id="inputProcessIndex">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+      </div>
+
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+          <input type="text" class="form-control" id="inputProcessName" placeholder="流程名称">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+      </div>
+
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+          <input type="text" class="form-control" id="inputNote" placeholder="备注">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+      </div>
+
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6" style="text-align:center;">
+          <img id="imgBtn" src="/images/buttonRed.png">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="clearfix visible-xs-block"></div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6" style="text-align:center;">
+          <div id="txtBtn" style="text-align:center;color: rgba(128,128,128,0.6);">按下按钮，关联本流程</div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>        
+      </div>
+      
+      <div class="row"  id = "row_container" style="margin-top: 60px;">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="submitProcessInfo()">提交</button>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+      </div>
+    </div>  
+
+    <footer>
+    </footer>
+    
+    <script src="/layer/layer.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

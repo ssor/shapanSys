@@ -13,6 +13,7 @@ ep.tail('broadcastInfo', broadcastInfo);
 
 function broadcastInfo(data){
 	console.log('broadcastInfo =>'.data);
+	console.log(data);
 	_.chain(clients).where({url: data.url}).each(function(_client){
 		var str = JSON.stringify(data);
         _client.ws.send(str);
@@ -40,7 +41,15 @@ exports.startWebSocketServer = function(app){
 			clients.push({ws: ws, url: ws.upgradeReq.url});
 	    	switch(ws.upgradeReq.url){
 	    		case deviceConfig:
-		    		ep.emit('configButtons');
+	    	// 		console.dir(serialPortList);
+	    	// 		_.chain(serialPortList).where({added: true})
+	    	// 		.each(function(_serialPort){
+						// ep.emit('broadcastInfo', {flag: _serialPort.portNickName, btnName: _serialPort.flag, cmd: 'added', state: "on", url: deviceConfig});
+	    	// 		});
+		    		ep.emit('scanDeviceChange');
+	    		break;
+	    		case addProcessIndex:
+	    			ep.emit('scanAllDevices');
 	    		break;
 	    	}
 	    }else{
@@ -54,13 +63,10 @@ exports.startWebSocketServer = function(app){
 		
 		// clients.push(ws);
 		
-	    // 连接成功后将当前所有存在的标签都发送给客户端
-		ws.on('open', function(){
-		    console.log('ws open'.info);
-		    // var str = JSON.stringify(tucaoMessageList);
-		    // console.log(str);
-		    // ws.send(str);
-		  });
+	    // 连接成功后
+		// ws.on('open', function(){
+		//     console.log('ws open'.info);
+		//   });
 		
 		ws.on('message', function(msg){
 		    console.log('message => '+ msg);

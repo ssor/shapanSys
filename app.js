@@ -7,6 +7,7 @@ serialPortList = [];
 processSettings = [];
 
 deviceConfig = '/deviceConfig';
+addProcessIndex = '/addProcessIndex';
 
 var colors = require('colors');
 
@@ -24,6 +25,14 @@ colors.setTheme({
 });
 var EventProxy = require('eventproxy');
 ep = new EventProxy();
+var Q                  = require('q');
+var Datastore          = require('nedb');
+var deviceConfigDB      = new Datastore({ filename: 'deviceConfig.db', autoload: true });
+deviceConfigDBFind = Q.nbind(deviceConfigDB.find, deviceConfigDB);
+deviceConfigDBRemove = Q.nbind(deviceConfigDB.remove, deviceConfigDB);
+deviceConfigDBInsert = Q.nbind(deviceConfigDB.insert, deviceConfigDB);
+deviceConfigDBUpdate = Q.nbind(deviceConfigDB.update, deviceConfigDB);
+
 
 var express = require('express');
 var routes = require('./routes');
@@ -57,9 +66,15 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/deviceConfig', routes.deviceConfig);
+app.get('/processConfigIndex', routes.processConfigIndex);
+app.get('/addProcessIndex', routes.addProcessIndex);
+app.post('/addProcessInfo', routes.addProcessInfo);
+app.post('/deleteProcessConfig', routes.deleteProcessConfig);
+app.get('/resetDeviceConfig', routes.resetDeviceConfig);
 app.get('/orderSimulation', routes.orderSimulation);
-app.get('/configButtons', routes.configButtons);
-app.get('/configButtonOK', routes.configButtonOK);
+app.get('/processList', routes.processList);
+// app.get('/configButtons', routes.configButtons);
+// app.get('/configButtonOK', routes.configButtonOK);
 
 app.get('/users', user.list);
 
