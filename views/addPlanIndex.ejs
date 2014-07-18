@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>添加生产流程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">    
+    <link href="/dataTable/jquery.dataTables.css" rel="stylesheet" media="screen">    
+    <style type="text/css">
+      .row{
+        margin-top: 20px;
+      }
+
+    </style>
+    <!-- // <script data-main="javascripts/main" src="/javascripts/require.js"></script> -->
+    <script type="text/javascript" src = "/javascripts/jquery.js"></script>
+    <script type="text/javascript" src = "/javascripts/underscore.js"></script>
+    <script type="text/javascript">
+        var products = [];
+
+        $(document).ready(function() {
+          $('#inputProductionQuantity').val(1);
+          $.get('../productTypeList', function(data){
+              products = JSON.parse(data);
+              _.each(products, function(_product){
+                  $("#productTypeSelect").append('<option value="'+ _product.index +'">'+ _product.name +'</option>');
+              })
+              $('#productTypeSelect')[0].selectedIndex = 0;
+          })
+        });
+        function submitProductTotalQuantity(){
+          var productQuantity = parseInt($('#inputProductionQuantity').val());
+          var productIndex = parseInt($('#productTypeSelect').val());
+          var b = productQuantity > 0;
+          if(b == false){
+            layer.alert('总数量至少为1！', 3);
+            return;
+          }
+
+          var order = {index: productIndex, quantity: productQuantity};
+
+          $.post('../addPlan', order, function(data){
+            data = JSON.parse(data);
+            if(data.code == 0){
+              layer.alert('添加成功', 1);
+            }else if(data.code == 1){
+              layer.alert(data.message);
+            }
+          })            
+        }
+    
+    </script>
+  </head>
+  <body style="margin-top: 30px;">
+    <div style="text-align: center; font-size: 20px; margin-bottom: 10px;"></div>
+    <div class="container" >
+
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+          <div>选择产品</div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+            <select class="form-control" id="productTypeSelect">
+            </select>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+        </div>
+      </div>
+
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+          <div>计划生产量</div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+          <input type="number" class="form-control" id="inputProductionQuantity">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+        </div>
+      </div>    
+
+
+      <div class="row"  id = "row_container" style="margin-top: 60px;">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="submitProductTotalQuantity()">提交</button>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+      </div>
+    </div>  
+
+    <footer>
+    </footer>
+    
+    <script src="/layer/layer.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

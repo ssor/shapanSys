@@ -14,7 +14,9 @@ ep.tail('broadcastInfo', broadcastInfo);
 function broadcastInfo(data){
 	console.log('broadcastInfo =>'.data);
 	console.log(data);
-	_.chain(clients).where({url: data.url}).each(function(_client){
+	_.chain(clients)
+	 .where({url: data.url})
+	 .each(function(_client){
 		var str = JSON.stringify(data);
         _client.ws.send(str);
 	})
@@ -39,19 +41,21 @@ exports.startWebSocketServer = function(app){
 	    // var obj = url.parse(ws.upgradeReq.url, true);
 	    if(ws.upgradeReq.url != null){
 			clients.push({ws: ws, url: ws.upgradeReq.url});
+/*
 	    	switch(ws.upgradeReq.url){
 	    		case deviceConfig:
-	    	// 		console.dir(serialPortList);
-	    	// 		_.chain(serialPortList).where({added: true})
-	    	// 		.each(function(_serialPort){
-						// ep.emit('broadcastInfo', {flag: _serialPort.portNickName, btnName: _serialPort.flag, cmd: 'added', state: "on", url: deviceConfig});
-	    	// 		});
+	    			console.dir(serialPortList);
+	    			_.chain(serialPortList).where({added: true})
+	    			.each(function(_serialPort){
+						ep.emit('broadcastInfo', {flag: _serialPort.portNickName, btnName: _serialPort.flag, cmd: 'added', state: "on", url: deviceConfig});
+	    			});
 		    		ep.emit('scanDeviceChange');
 	    		break;
 	    		case addProcessIndex:
 	    			ep.emit('scanAllDevices');
 	    		break;
 	    	}
+	    	*/
 	    }else{
 	    	console.log('error => startWebSocketServer: the url is not recognized!'.error)
 	    	return;

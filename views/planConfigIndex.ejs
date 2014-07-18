@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>生产流程设置</title>
+    <title>生产计划设置</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
@@ -39,13 +39,7 @@
       .btn{
         width: 100px;
       }
-          td.highlight {
-              background-color: rgba(0,256,0, 0.1) !important;
-          }
-          tr.highlight{
-              background-color: rgba(0,256,0, 0.1) !important;
 
-          }
     </style>
     <!-- // <script data-main="javascripts/main" src="/javascripts/require.js"></script> -->
     <script type="text/javascript" src = "/javascripts/jquery.js"></script>
@@ -61,30 +55,13 @@
                 "ordering": false,
                 "info":     false,
                 "searching":  false,
-                "ajax": "../processList",
+                "ajax": "../planList",
                 "columns": [
                     { "data": "index" },
                     { "data": "name" },
-                    { "data": "deviceID" },
-                    { "data": "note" },
+                    { "data": "quantity" },
                 ]
             } );
-            table.on('draw', function(){
-                return;
-                var rowsCount = table.rows()[0].length;
-                for(var i = 0; i< rowsCount; i++){
-                    var data = table.row().nodes().data()[i];
-                    console.log(data.deviceID);
-                    if(data.deviceID == 'btn001'){
-
-                      $(table.cell(i,2).node()).addClass( 'highlight' );
-                    }
-                }
-                // $( table.row(0).node()).addClass( 'highlight' );
-                // $( table.column(2).nodes() ).addClass( 'highlight' );
-                // $(table.cell(1,1).node()).addClass( 'highlight' );
-            })
-
             $('#dtProcess tbody').on( 'click', 'tr', function () {
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
@@ -94,14 +71,33 @@
                     $(this).addClass('selected');
                 }
             } );
-            // $.get('../processList', function(data){
-            //   var processes = JSON.parse(data);
+            $("#checkAutoPlan").change(checkboxChange);
 
-            // })
-            // hideTip();
             createWebSocket();
         });
-        function showAddProcessFrame(){
+        function checkboxChange(){
+            var b = $("#checkAutoPlan").prop('checked');
+            if(b == true){
+                console.log('checked');
+                // $.get('../enableAutoPlan', function(){
+
+                // })
+                showPlanAutoSettingIndex();
+            }else{
+                console.log('not checked');
+                $.get('../disableAutoPlan', function(data){
+                    data = JSON.parse(data);
+                    if(data.code == 0){
+                        // $("#checkAutoPlan").change(null);
+                        // $("#checkAutoPlan").change(checkboxChange);
+                    }else{
+                      $("#checkAutoPlan").prop('checked', true);
+                      layer.alert(data.message);
+                    }
+                })
+            }          
+        }
+        function showPlanAutoSettingIndex(){
           $.layer({
               type: 2,
               maxmin: false,
@@ -110,19 +106,43 @@
               shade: [0.0,'#fff'],
               offset: ['20px',''],
               area: ['800px', ($(window).height() - 150) +'px'],
-              iframe: {src: '../addProcessIndex'},
+              iframe: {src: '../planAutoSettingIndex'},
               close: function(){
-                // alert('222');
-                table.ajax.reload();
-                // location.reload();
+                // table.ajax.reload();
+                $.get('../enableAutoPlan', function(data){
+                    data = JSON.parse(data);
+                    if(data.code == 0){
+
+                    }else{
+                      $("#checkAutoPlan").prop('checked', false);
+                      // $("#checkAutoPlan").prop('checked', 'false');
+                      layer.alert(data.message);
+                    }
+                })
               }
-          });
+          });  
+        }
+        function showAddPlanIndex(){
+          $.layer({
+              type: 2,
+              maxmin: false,
+              shadeClose: false,
+              title: '',
+              shade: [0.0,'#fff'],
+              offset: ['20px',''],
+              area: ['800px', ($(window).height() - 150) +'px'],
+              iframe: {src: '../addPlanIndex'},
+              close: function(){
+                table.ajax.reload();
+              }
+          });          
         }
         function deleteRow(){
           var selectedIndex = table.row('.selected')[0];
           if(_.size(selectedIndex)  > 0){
               var obj = table.data()[selectedIndex[0]];
-              $.post('../deleteProcessConfig', obj, function(data){
+              if(obj.index == null || obj.index.length <= 0 || obj.index == "总计") return;
+              $.post('../deletePlan', obj, function(data){
                 data = JSON.parse(data);
                 if(data.code == 0){
                   layer.alert('已经成功删除！', 1);
@@ -146,32 +166,13 @@
         function onMessage(evt) {
             var _cmd = JSON.parse(evt.data);
             console.log(_cmd);
-            var rowsCount = table.rows()[0].length;
-            for(var i = 0; i< rowsCount; i++){
-                var data = table.row().nodes().data()[i];
-                console.log(data.deviceID);
-                if(data.deviceID == _cmd.btnName){
-                  $(table.cell(i,2).node()).addClass( 'highlight' );
-                }
-            }            
+            if(_cmd.cmd == 'reload'){
+              table.ajax.reload();
+              console.log(_cmd.message);
+            }else{
+              console.log(_cmd.message);
+            }
         }   
-
-        function addDevice(_cmd){
-            var txt = _cmd.btnName == null ? '':_cmd.btnName;
-            var ele = 
-              '<div class="col-xs-6 col-sm-6 col-md-2 col-md-lg-2 btnPanel" id = "btnPanel_'+ _cmd.flag +'">'+
-                '<div class="row">'+
-                  '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">'+
-                      '<img src = "'+ _cmd.imgSrc +'" id = "img_'+ _cmd.flag +'">'+
-                  '</div>'+
-                  '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">'+
-                      '<div class="panelText" id = "txt_'+ _cmd.flag +'">'+ txt +'</div>'+
-                  '</div>'+
-                '</div>'+
-              '</div>'
-
-            $('#row_container').append(ele);
-        }
         function onOpen(evt) {
           console.log('websocket open');
           websocket.send('');
@@ -181,21 +182,7 @@
         }
         function onError(evt) {
           console.error('websocket error');
-        }      
-        function resetDeviceConfig(){
-          if(confirm('重新配置所有设备将删除当前所有之前的设备配置项，确定吗？') == true){
-            console.log('重新配置所有设备!!');
-            $.get('../resetDeviceConfig', function(data){
-                console.log('resetDeviceConfig => ' + data);
-                if(data == 'ok'){
-                  _.each(cmds, function(_cmd){
-                    $('#btnPanel_' + _cmd.flag).remove();
-                  })
-                  hideTip();
-                }
-            })
-          }
-        }
+        }            
         function hideTip(){
             $('#lblTip').css('display', 'none');
             $('#lblDeviceListText').css('margin-top', '40px');
@@ -205,10 +192,10 @@
   <body>
     <div class="demo-panel-title"> 
         <h3  style="text-align:center;font-size:20px;color: white;margin-bottom: 10px;"></h3>
-        <div style="text-align:center;font-size:50px;color: white;"> 设计多个生产流程 </div>
+        <div style="text-align:center;font-size:50px;color: white;"> 设计生产计划 </div>
     </div>
     <!-- <div id="lblTip" style="">设备发生变化，检查设备或者重新配置</div> -->
-    <div id="lblDeviceListText" style=""> 调整流程，让生产更合理 </div>
+    <div id="lblDeviceListText" style=""> 设计生产计划 </div>
     <div class="container">
       <div class="row"  id = "row_container">
 
@@ -217,18 +204,24 @@
           <table id="dtProcess" class="display" cellspacing="0" width="100%" >
               <thead>
                   <tr>
-                      <th>排序</th>
-                      <th>流程名称</th>
-                      <th>关联的设备</th>
-                      <th>备注</th>
+                      <th>编号</th>
+                      <th>产品名称</th>
+                      <th>生产数量</th>
                   </tr>
               </thead>
           </table>
 
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="margin-top: 50px;text-align:center;">
-            <button type="button" class="btn btn-default btn-sm" onclick= "showAddProcessFrame()">添加</button>
+            <button type="button" class="btn btn-default btn-sm" onclick= "showAddPlanIndex()">添加</button>
             <button type="button" class="btn btn-default btn-sm" onclick = "deleteRow()">删除</button>
+            <!-- <button type="button" class="btn btn-default btn-sm" onclick = "showOrderAutoIndex()">自动生成</button> -->
+            <label>
+              <input type="checkbox" name="checkbox"  id="checkAutoPlan">
+              根据订单自动生成
+            </label>
+
+
         </div>
       </div>
 <!--       <div style="text-align:center;text-align: center; border-top-style: solid; border-top-width: 1px; padding-top: 20px; border-top-color: rgba(128,128,128,0.3); padding-bottom: 20px;"> 

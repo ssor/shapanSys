@@ -38,7 +38,9 @@
             layer.alert('信息填写不完全，请补充完整！', 3);
             return;
           }
-          var processInfo = {index: processIndex, name: processName, note: processNote};
+          var btnID = $('#txtBtn').text();
+
+          var processInfo = {index: processIndex, name: processName, note: processNote, deviceID: btnID};
           $.post('../addProcessInfo', processInfo, function(data){
             data = JSON.parse(data);
             if(data.code == 0){
@@ -90,9 +92,11 @@
       <div class="row"  id = "row_container">
         <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
-          <input type="number" class="form-control" id="inputProcessIndex">
+          <input type="number" class="form-control" id="inputProcessIndex" >
         </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+          <div>流程排序</div>
+        </div>
       </div>
 
       <div class="row"  id = "row_container">

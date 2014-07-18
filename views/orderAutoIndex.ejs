@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>添加生产流程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">    
+    <link href="/dataTable/jquery.dataTables.css" rel="stylesheet" media="screen">    
+    <style type="text/css">
+      .row{
+        margin-top: 20px;
+      }
+
+    </style>
+    <!-- // <script data-main="javascripts/main" src="/javascripts/require.js"></script> -->
+    <script type="text/javascript" src = "/javascripts/jquery.js"></script>
+    <script type="text/javascript" src = "/javascripts/underscore.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+          $('#inputProcessIndex1').val(1);
+          $('#inputProcessIndex2').val(1);
+          $('#inputProcessIndex3').val(1);
+          $('#inputOrderQuantity').val(1);
+        });
+        function submitProductTotalQuantity(){
+          var product1Quantity = parseInt($('#inputProcessIndex1').val());
+          var product2Quantity = parseInt($('#inputProcessIndex2').val());
+          var product3Quantity = parseInt($('#inputProcessIndex3').val());
+          var orderQuantity = parseInt($('#inputOrderQuantity').val());
+          var b = (product1Quantity + product2Quantity + product3Quantity) > 0;
+          if(b == false){
+            layer.alert('总数量至少为1！', 3);
+            return;
+          }
+          b = orderQuantity > 0;
+          if(b == false){
+            layer.alert('难道不想生成一个订单吗？', 3);
+            return;
+          }
+          if(confirm('之前所有的订单将会被删除，确定吗？') == true){
+              var orderSetting = {quantitySettings: [{index: 1, quantity: product1Quantity}, {index: 2, quantity: product2Quantity}, {index: 3, quantity: product3Quantity}], orderQuantity: orderQuantity};
+
+              $.post('../resetOrderSetting', orderSetting, function(data){
+                data = JSON.parse(data);
+                if(data.code == 0){
+                  layer.alert('设定成功', 1);
+                }else if(data.code == 1){
+                  layer.alert(data.message);
+                }
+              })            
+          }
+        }
+    
+    </script>
+  </head>
+  <body style="margin-top: 30px;">
+    <div style="text-align: center; font-size: 20px; margin-bottom: 10px;">设定所有订单中各产品数量之和</div>
+    <div class="container" >
+
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+          <div>产品一</div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+          <input type="number" class="form-control" id="inputProcessIndex1" placeholder="1">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+        </div>
+      </div>
+
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+          <div>产品二</div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+          <input type="number" class="form-control" id="inputProcessIndex2"  placeholder="1">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+        </div>
+      </div>
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+          <div>产品三</div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+          <input type="number" class="form-control" id="inputProcessIndex3"  placeholder="1">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+        </div>
+      </div>      
+      
+      <div class="row"  id = "row_container">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+          <div>想生成几个订单？</div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+          <input type="number" class="form-control" id="inputOrderQuantity"  placeholder="1">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3">
+        </div>
+      </div>   
+
+      <div class="row"  id = "row_container" style="margin-top: 60px;">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="submitProductTotalQuantity()">提交</button>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3"></div>
+      </div>
+    </div>  
+
+    <footer>
+    </footer>
+    
+    <script src="/layer/layer.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

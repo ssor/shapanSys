@@ -37,9 +37,17 @@
     <script type="text/javascript">
         var wsUri = 'ws:' + window.location.href.substring(window.location.protocol.length) + '';
         var cmds = [];
+        var deviceID_List = [];
         $(document).ready(function() {
             hideTip();
             createWebSocket();
+            $.get('../getBindedDevices', function(data){
+                data = JSON.parse(data);
+                deviceID_List = _.map(data, function(_id){
+                  return {deviceID: _id, connected: false};
+                })
+                console.dir(deviceID_List);
+            })
         });
         function createWebSocket() {
             websocket = new WebSocket(wsUri);
@@ -51,25 +59,35 @@
         function onMessage(evt) {
             var _cmd = JSON.parse(evt.data);
             console.log(_cmd);
-            if(_cmd.type == null || _cmd.type == 'normal'){
-                if(_cmd.cmd == 'added'){
-                  cmds.push(_cmd);
-                  if(_cmd.state == 'on'){
-                    addDevice({flag: _cmd.flag, imgSrc: '/images/buttonGreen.png'});
-                  }else{
-                    addDevice({flag: _cmd.flag, imgSrc: '/images/buttonRed.png'});
-                  } 
-                }else if(_cmd.cmd == 'repeat'){
-                  if(_cmd.state == 'on'){
-                    updateDevice({flag: _cmd.flag, imgSrc: '/images/buttonGreen.png', btnName: _cmd.btnName});
-                  }else{
-                    updateDevice({flag: _cmd.flag, imgSrc: '/images/buttonRed.png', btnName: _cmd.btnName});
-                  }                 
-                }   
-            }else if(_cmd.type == 'deviceChanged'){
-                  $('#lblTip').css('display', 'block');
-                  $('#lblDeviceListText').css('margin-top', '0px');
+            var device = _.findWhere(deviceID_List, {deviceID: _cmd.flag});
+            if(device != null){
+                device.connected = true;
+                var lenConnected = _.chain(deviceID_List).where({connected: true}).size().value(); 
+                if(lenConnected == _.size(deviceID_List)){
+                    console.log('all device connected !!!');
+                }else{
+                    console.log('%d device not connected', _.size(deviceID_List) - lenConnected);
+                }
             }
+            // if(_cmd.type == null || _cmd.type == 'normal'){
+            //     if(_cmd.cmd == 'added'){
+            //       cmds.push(_cmd);
+            //       if(_cmd.state == 'on'){
+            //         addDevice({flag: _cmd.flag, imgSrc: '/images/buttonGreen.png'});
+            //       }else{
+            //         addDevice({flag: _cmd.flag, imgSrc: '/images/buttonRed.png'});
+            //       } 
+            //     }else if(_cmd.cmd == 'repeat'){
+            //       if(_cmd.state == 'on'){
+            //         updateDevice({flag: _cmd.flag, imgSrc: '/images/buttonGreen.png', btnName: _cmd.btnName});
+            //       }else{
+            //         updateDevice({flag: _cmd.flag, imgSrc: '/images/buttonRed.png', btnName: _cmd.btnName});
+            //       }                 
+            //     }   
+            // }else if(_cmd.type == 'deviceChanged'){
+            //       $('#lblTip').css('display', 'block');
+            //       $('#lblDeviceListText').css('margin-top', '0px');
+            // }
         }   
         function updateDevice(_cmd){
             $('#img_'+ _cmd.flag).attr('src', _cmd.imgSrc);

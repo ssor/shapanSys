@@ -2,12 +2,20 @@
 /**
  * Module dependencies.
  */
+eventOrderDeleted = 'orderDeleted';
+eventNewOrderComingIn = 'newOrderComingIn';
 
 serialPortList = [];
-processSettings = [];
-
+sectionSettings = [];
+sections = [];//游戏流程的缓存
+productTypeList = 
+        [{index: 1, name: '型号一', totalCount: 0}, 
+          {index: 2, name: '型号二', totalCount: 0}, 
+          {index: 3, name: '型号三', totalCount: 0}];
 deviceConfig = '/deviceConfig';
 addProcessIndex = '/addProcessIndex';
+processConfigIndex = '/processConfigIndex';
+planConfigIndex = '/planConfigIndex';
 
 var colors = require('colors');
 
@@ -25,13 +33,27 @@ colors.setTheme({
 });
 var EventProxy = require('eventproxy');
 ep = new EventProxy();
-var Q                  = require('q');
+Q                  = require('q');
 var Datastore          = require('nedb');
-var deviceConfigDB      = new Datastore({ filename: 'deviceConfig.db', autoload: true });
-deviceConfigDBFind = Q.nbind(deviceConfigDB.find, deviceConfigDB);
-deviceConfigDBRemove = Q.nbind(deviceConfigDB.remove, deviceConfigDB);
-deviceConfigDBInsert = Q.nbind(deviceConfigDB.insert, deviceConfigDB);
-deviceConfigDBUpdate = Q.nbind(deviceConfigDB.update, deviceConfigDB);
+var orderDB      = new Datastore({ filename: 'order.db', autoload: true });
+orderDBFind = Q.nbind(orderDB.find, orderDB);
+orderDBRemove = Q.nbind(orderDB.remove, orderDB);
+orderDBInsert = Q.nbind(orderDB.insert, orderDB);
+orderDBUpdate = Q.nbind(orderDB.update, orderDB);
+
+var sectionDB      = new Datastore({ filename: 'section.db', autoload: true });
+sectionDBFind = Q.nbind(sectionDB.find, sectionDB);
+sectionDBRemove = Q.nbind(sectionDB.remove, sectionDB);
+sectionDBInsert = Q.nbind(sectionDB.insert, sectionDB);
+sectionDBUpdate = Q.nbind(sectionDB.update, sectionDB);
+
+var planDB      = new Datastore({ filename: 'plans.db', autoload: true });
+planDBFind = Q.nbind(planDB.find, planDB);
+planDBRemove = Q.nbind(planDB.remove, planDB);
+planDBInsert = Q.nbind(planDB.insert, planDB);
+planDBUpdate = Q.nbind(planDB.update, planDB);
+
+
 
 
 var express = require('express');
@@ -41,7 +63,9 @@ var http = require('http');
 var path = require('path');
 
 var wsServer = require('./routes/wsServer');
-
+var productionProcess = require('./routes/productionProcess');
+var orderSimulation = require('./routes/orderSimulation');
+var productionPlan = require('./routes/productionPlan');
 var app = express();
 
 var server = wsServer.startWebSocketServer(app);
@@ -65,18 +89,41 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/deviceConfig', routes.deviceConfig);
-app.get('/processConfigIndex', routes.processConfigIndex);
-app.get('/addProcessIndex', routes.addProcessIndex);
-app.post('/addProcessInfo', routes.addProcessInfo);
-app.post('/deleteProcessConfig', routes.deleteProcessConfig);
-app.get('/resetDeviceConfig', routes.resetDeviceConfig);
-app.get('/orderSimulation', routes.orderSimulation);
-app.get('/processList', routes.processList);
+// app.get('/deviceConfig', routes.deviceConfig);
+// app.get('/getBindedDevices', routes.getBindedDevices);
+// app.get('/resetDeviceConfig', routes.resetDeviceConfig);
+app.get('/productTypeList', routes.productTypeList);
+
+app.get('/processConfigIndex', productionProcess.processConfigIndex);
+app.get('/addProcessIndex', productionProcess.addProcessIndex);
+app.post('/addProcessInfo', productionProcess.addProcessInfo);
+app.post('/deleteProcessConfig', productionProcess.deleteProcessConfig);
+app.get('/processList', productionProcess.processList);
+app.get('/runningIndex', productionProcess.runningIndex);
+
+
+
+app.get('/orderConfigIndex', orderSimulation.orderConfigIndex);
+app.get('/orderList', orderSimulation.orderList);
+app.get('/orderAutoIndex', orderSimulation.orderAutoIndex);
+app.post('/resetOrderSetting', orderSimulation.resetOrderSetting);
+app.get('/addOrderIndex', orderSimulation.addOrderIndex);
+app.post('/addOrder', orderSimulation.addOrder);
+app.post('/deleteOrder', orderSimulation.deleteOrder);
 // app.get('/configButtons', routes.configButtons);
 // app.get('/configButtonOK', routes.configButtonOK);
 
-app.get('/users', user.list);
+app.get('/planConfigIndex', productionPlan.planConfigIndex);
+app.get('/planList', productionPlan.planList);
+app.get('/addPlanIndex', productionPlan.addPlanIndex);
+app.post('/addPlan', productionPlan.addPlan);
+app.post('/deletePlan', productionPlan.deletePlan);
+app.get('/enableAutoPlan', productionPlan.enableAutoPlan);
+app.post('/setMinProductionQuantity', productionPlan.setMinProductionQuantity);
+app.get('/disableAutoPlan', productionPlan.disableAutoPlan);
+app.get('/planAutoSettingIndex', productionPlan.planAutoSettingIndex);
+
+
 
 server.listen(app.get('port'), function(){
   console.log('ShaPan server listening on port ' + app.get('port'));
