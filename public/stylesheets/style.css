@@ -1,8 +1,28 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#divNav{
+	height: 60px;
+	background: rgb(24,25,29);
 }
-
-a {
-  color: #00B7FF;
+#imglogo{
+	/*width: 36px;*/
+	margin-top: 10px;
+	margin-left: 5px;
+	height: 38px;
+}
+.navFunc{
+	color: rgb(170,170,170);margin-top: -30px; font-size: 16px;position: absolute;cursor: pointer;
+}
+#divNav a:hover 
+{ 
+	/*font-size:16px; */
+	/*font-weight:bold; */
+	color:#FFffff; 
+	text-decoration:none; 
+}
+.demo-panel-title{
+	height: 150px;
+	padding-top: 10px;
+	background: #c5c4c0 url("/images/banner_bg.jpg") center top no-repeat fixed;
+}
+#lblTableTitleText{
+	text-align:center;font-size:21px;color: rgb(150,150,150);margin-top: 20px; margin-bottom: 0px;border-bottom-style: solid; border-bottom-color: rgba(128,128,128,0.2); border-bottom-width: 1px; padding-bottom: 10px;
 }

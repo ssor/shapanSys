@@ -21,6 +21,7 @@ var orders = [ [ { name: '产品一', quantity: 1 },
 
 describe("Parse => ", function() {
     it("parse multi items ", function(){
+        return;
         var list = _.map(orders, function(_order){
             var quantities = _.pluck(_order, "quantity");
             var line = {};
@@ -42,6 +43,10 @@ describe("Parse => ", function() {
         })
         console.dir(list);
     });
+    it('last ', function(){
+        var last = _.last([]);
+        console.dir(last);
+    })
 });
 
 // function parseMultyCmds(_rawData, _temp){

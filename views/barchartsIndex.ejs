@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>c3BarChart</title>
+    <link rel="icon" 
+          type="image/png" 
+          href="/logo_pure.png">    
+    <link href="/stylesheets/style.css" rel="stylesheet" media="screen">    
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">    
+    <link rel='stylesheet' href='/stylesheets/c3.css' />
+    <script type="text/javascript">
+    </script>
+
+  </head>
+  <body>
+    <div id = "divNav">
+        <div class="container">
+            <div class="row"  id = "">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-md-lg-1">
+
+                    <img id="imglogo" src="/images/logo3.png">
+                </div>
+                <div class="col-xs-11 col-sm-11 col-md-11 col-md-lg-11">
+                    <div style="margin-top: 48px; ">
+
+                          <a class= "navFunc" style="right:525px;">教程 </a>
+                          <a class= "navFunc" style="right:470px;">订单 </a>
+                          <a class= "navFunc " style="right:415px;">流程 </a>
+                          <a class= "navFunc " style="right:360px;">计划 </a>
+                          <a class= "navFunc" style="right:240px;color: rgb(100,100,100);">实时时长统计 </a>
+                          <a class= "navFunc" style="right:120px;">实时比重统计 </a>
+                          <a class= "navFunc" style="right:70px;">导出 </a>
+                          <a class= "navFunc" style="right:20px;">关于 </a>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row"  id = "row_container">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="margin-top:20px;">
+                    <div id="lblTableTitleText" style="font-size:23px;padding-bottom: 15px;"> 生产环节时间统计图 </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="margin-top:5px;">
+
+                <div id="chart" style=""></div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="margin-top: 50px;text-align:center;">
+                <button type="button" class="btn btn-default btn-sm" style="width: 120px;" onclick= "showAddPlanIndex()">叠加</button>
+                <button type="button" class="btn btn-default btn-sm" style="width: 120px;" onclick = "deleteRow()">不叠加</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 100px;">
+        <div class="row"  id = "row_container">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="">
+
+                <!-- <div  style="font-size: 24px; color: rgb(200,200,200); text-align: center; border-top: 1px solid rgb(240,240,240); padding-top: 10px; padding-bottom: 20px; margin-top: 30px;"> 说明 </div> -->
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="font-size: 16px; color: rgb(180,180,180); text-align: center;margin-top: 30px;border-top: 1px solid rgb(240,240,240); padding-top: 30px;">
+                    实时统计所有已经发生的生产批次中，各个环节所耗费的时间
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </body>
+<script type="text/javascript" src = "/javascripts/jquery.js"></script>
+<script type="text/javascript" src = "/javascripts/d3.js"></script>
+<script type="text/javascript" src = "/javascripts/c3.js"></script>
+<script type="text/javascript" src = "/javascripts/underscore.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var wsUri = 'ws:' + window.location.href.substring(window.location.protocol.length) + '';
+    var columns = [];
+    var chart;
+    $(document).ready(function(){
+        $.get('../productionData4BarChart', function(data){
+            var data = JSON.parse(data);
+            console.dir(data);
+            console.log(_.isArray(data.categories));
+            var categories = _.map(data.categories, function(_cat){return _cat;});
+            chart = c3.generate({
+                data: {
+                    columns: [data.columns],
+                    // columns: [
+                    //     ['生产批次1', 0.1, 0.2],
+                    // ],
+                    type: 'bar',
+                    groups: [
+                        // ['循环一', '循环二', '循环三']
+                    ]
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        categories: categories
+                        // categories: ['环节一', '环节二', '环节三']
+                        // categories: [<%= categories %>]
+                    }
+                },
+            });
+            createWebSocket();
+            return;
+
+
+            setTimeout(function () {
+                addLoopData('生产批次1', [3, 4]);
+                // addLoopData('生产批次2', [80, 40, 30]);
+
+                // chart.load({
+                //     columns: [
+                //         ['生产批次1', 30, 20, 10],
+                //         ['生产批次2', 80, 40, 30],
+                //         ['生产批次3', 100, 50, 20],
+                //         ['生产批次4', 20, 50, 30],
+                //     ]
+                // });
+            }, 2000);
+            setTimeout(function () {
+                setToStackBar();return;
+                chart.groups([['生产批次1', '生产批次2', '生产批次3', '生产批次4']])
+            }, 5000);    
+                      
+        })
+           
+    });
+    function onMessage(evt) {
+        var _cmd = JSON.parse(evt.data);
+        console.log(_cmd);
+        var productionData = _cmd.productionData;
+        addLoopData(productionData.loopName, productionData.data);   
+    }  
+    function createWebSocket() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function (evt) { onOpen(evt) };
+        websocket.onclose = function (evt) { onClose(evt) };
+        websocket.onmessage = function (evt) { onMessage(evt) };
+        websocket.onerror = function (evt) { onError(evt) };
+    }
+       
+    function onOpen(evt) {
+      console.log('websocket open');
+      websocket.send('');
+    }
+    function onClose(evt) {
+      console.warn('websocket closed');
+    }
+    function onError(evt) {
+      console.error('websocket error');
+    }  
+    function addLoopData(_loopName, _data){
+        var line = _.union([_loopName], _data);
+        var existedLine = _.find(columns, function(_line){return _line[0] == _loopName});
+        if(existedLine == null){
+            columns.push(line);
+        }else{
+            for(var i = 1; i < _.size(existedLine); i++){
+                existedLine[i] += line[i];
+            }
+        }
+        chart.load({columns: columns});
+        console.dir(columns);
+    }
+    function setToStackBar(){
+        var columnNames = _.map(columns, function(_column){return _column[0]});
+        console.dir(columnNames);
+        chart.groups([columnNames]);
+    }
+    function setToParaBar(){
+        chart.groups([]);
+    }
+
+           
+</script>
+
+
+</html>

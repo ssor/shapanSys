@@ -32,7 +32,7 @@ var totalProcessStopStamp = 0;
 
 */
 var processRecords = [];//生产循环列表
-var sectionSettings = [];//生产环节信息设定
+// var sectionSettings = [];//生产环节信息设定
 // sectionSettings.push({flag: 'btn000', processName: 'Total Process', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: ''});
 // sectionSettings.push({flag: 'btn001', processName: 'Section1', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: '', lastSection: false});
 // sectionSettings.push({flag: 'btn002', processName: 'Section2', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: '', lastSection: true});
@@ -154,19 +154,140 @@ function _initialProcessTemp(_sections){
 }
 function _initialSectionSettings(_sections){
 	sectionSettings = _.map(_sections, function(_section){
-		return {index: _section.index, deviceID: _section.deviceID, name: _section.name, timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: '', lastSection: false, firstSection: false};
+		return {index: _section.index, deviceID: _section.deviceID, 
+				name: _section.name, timeConsumed: 0, startStamp: 0, 
+				endStamp: 0, startTime: '', endTime: '', lastSection: false, firstSection: false};
 	});
 	var maxIndexSection = _.max(sectionSettings, function(_p){return _p.index;});
 	if(maxIndexSection != null && maxIndexSection.index > 0){
 		_.findWhere(sectionSettings, {index: maxIndexSection.index}).lastSection = true;
 	}
-	var minIndexSection = _.min(sectionSettings, function(_s){return _s.index;});
+	var minIndexSection = _.min(_.filter(sectionSettings, function(_section){return _section.index > 0}), function(_s){return _s.index;});
+	// console.log('minIndexSection => ');
+	// console.dir(minIndexSection);
 	if(minIndexSection != null && minIndexSection.index > 0){
 		_.findWhere(sectionSettings, {index: minIndexSection.index}).firstSection = true;
 	}
 	console.log('sectionSettings =>'.data);
 	console.dir(sectionSettings);
 }
+function _updateProcessStateFirstSection(_msg){
+	if(_msg.state == 'on'){
+		//开始一个生产循环
+		var productionLoop = {index: _.size(processRecords) + 1, complted: false, startStamp: _msg.stamp, startTime: _msg.time, endTime: '', endStamp: 0, timeConsumed: 0};
+		productionLoop.sections = _.map(sectionSettings, function(_section){
+			// return _section;
+			return {index: _section.index, deviceID: _section.deviceID, name: _section.name, complted: false, timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: '', lastSection: _section.lastSection, firstSection: _section.firstSection};
+		});
+		processRecords.push(productionLoop);
+		console.log('现在有(' + _.size(processRecords) +')个循环了');
+		var firstSection = _.findWhere(productionLoop.sections, {firstSection: true});
+		if(firstSection != null){
+			firstSection.startStamp = _msg.stamp;
+			firstSection.startTime = _msg.time;
+		}
+		console.log(("流程 (" + productionLoop.index + ') 开始于 ' + productionLoop.startTime).info);
+
+	}else if(_msg.state == 'off'){
+		var latestProductionLoop = _.last(processRecords);
+		if(latestProductionLoop == null){
+			console.log('没有生产流程'.error);
+			return;//还没有开始呢
+		} 
+		if(latestProductionLoop.complted == true){
+			console.log('最新的生产流程已经完成过了，无法再次结束'.error);
+			return;
+		} 
+		var firstSection = _.findWhere(latestProductionLoop.sections, {firstSection: true});
+		if(firstSection != null){
+			if(firstSection.complted == true){
+				console.dir(firstSection);
+				console.log('第一个环节已经完成过了，无法再次结束'.error);
+				return;
+			} 
+			if(firstSection.startStamp <= 0){
+				console.log('第一个环节尚未开始，无法结束'.error);
+				return;
+			} 
+			firstSection.endStamp = _msg.stamp;
+			firstSection.endTime = _msg.time;
+			firstSection.timeConsumed = firstSection.endStamp - firstSection.startStamp;
+			firstSection.complted = true;
+			console.log(("流程 (" + latestProductionLoop.index + ') 中环节(' +  firstSection.name + ') 运行时间从 ' + firstSection.startTime + ' 到 ' + firstSection.endTime).info);
+			console.log(('共耗时 ' + firstSection.timeConsumed/1000 + ' 秒').info);
+			_broadcastProductionData4BarChart(barchartsIndex, latestProductionLoop);//通知客户端更新图标数据
+			_broadcastProductionData4PieChart(piechartsIndex);
+		}
+	}		
+}
+function _broadcastProductionData4BarChart(_url, _loop){
+	var data = _.map(_loop.sections, function(_section){return _section.timeConsumed/1000;});
+	var productionData = {loopName: '生产批次'+_loop.index, data: _.rest(data)};
+	ep.emit('broadcastInfo', {url: _url, productionData: productionData});	
+}
+function _broadcastProductionData4PieChart(_url){
+	var productionData = _.chain(processRecords)
+						.reduce(function(memo, _record){return _.union(memo, _record.sections);}, [])
+						.filter(function(_section){return _section.index > 0})
+						.groupBy(function(_section){return _section.name})
+						.pairs()
+						.map(function(_sectionInfo)/*形如 ["1111", []]*/{
+							var value = _.reduce(_sectionInfo[1], function(memo, _section){
+								return memo + _section.timeConsumed;
+							}, 0);
+							return {name: _sectionInfo[0], value: value};
+						}).value();
+
+	console.dir(productionData);	
+	ep.emit('broadcastInfo', {url: _url, productionData: productionData});	
+}
+function _updateProcessStateLastSection(_productionLoop, _msg){
+	var lastSection = _.findWhere(_productionLoop.sections, {lastSection: true});
+	if(lastSection == null){
+		console.log('没有最后的环节设定'.error)
+		return;
+	} 
+	if(_msg.state == "on"){
+		if(lastSection.startStamp > 0){
+			console.log('最后一个环节已经开始了，无法再次开始'.error)
+			// console.log('最后一个环节信息：'.debug);
+			// console.dir(lastSection);
+			// console.log('循环所有环节的信息：'.debug);
+			// console.dir(_productionLoop.sections);
+			return;
+		} 
+		lastSection.startStamp = _msg.stamp;
+		lastSection.startTime = _msg.time;
+		console.log(("流程 (" + _productionLoop.index + ') 中 环节(' +  lastSection.name + ') 开始于 ' + lastSection.startTime).info);
+
+	}else if(_msg.state == 'off'){
+		if(lastSection.startStamp <= 0) {
+			console.log('最后的环节没有开始过，无法结束'.error);
+			return;//没开始过
+		}
+		if(lastSection.complted == true){
+			console.log('最后的环节已经完成了，无法再次结束'.error)
+			return;
+		} 
+		lastSection.endStamp = _msg.stamp;
+		lastSection.endTime = _msg.time;
+		lastSection.timeConsumed = lastSection.endStamp - lastSection.startStamp;
+		lastSection.complted = true;
+		console.log(("流程 (" + _productionLoop.index + ') 中 环节(' +  lastSection.name + ') 运行时间从 ' + lastSection.startTime + ' 到 ' + lastSection.endTime).info);
+		console.log(('共耗时 ' + lastSection.timeConsumed/1000 + ' 秒').info);
+		_broadcastProductionData4BarChart(barchartsIndex, _productionLoop);//通知客户端更新图标数据
+		_broadcastProductionData4PieChart(piechartsIndex);
+
+		_productionLoop.endStamp = _msg.stamp;
+		_productionLoop.endTime = _msg.time;
+		_productionLoop.timeConsumed = _productionLoop.endStamp - _productionLoop.startStamp;
+		_productionLoop.complted = true;
+		console.log(("流程 (" + _productionLoop.index + ') 运行时间从 ' + _productionLoop.startTime + ' 到 ' + _productionLoop.endTime).info);
+		console.log(('共耗时 ' + _productionLoop.timeConsumed/1000 + ' 秒').info);
+
+	}
+}
+
 //传入信息，开始处理
 function _updateProcessState(_msg){
 	if(_msg.flag == 'btn000'){
@@ -174,6 +295,7 @@ function _updateProcessState(_msg){
 			_resetTotalProcessInfo();
 			_setTotalProcessStartInfo();
 		}else if(_msg.state == 'off'){
+
 			if(!_checkProcessStartNormally()){
 				_resetTotalProcessInfo();
 				return;
@@ -190,21 +312,76 @@ function _updateProcessState(_msg){
 
 	var sectionSetting = _.findWhere(sectionSettings, {deviceID: _msg.flag});
 	if(sectionSetting != null){
-		if(_msg.state == 'on'){
-			sectionSetting.startStamp = _msg.stamp;
-			sectionSetting.startTime = _msg.time;
-			console.log((sectionSetting.name + ' 开始于 ' + sectionSetting.startTime).info);
-		}else if(_msg.state == 'off'){
-			if(sectionSetting.startStamp <= 0) return;//直接从开始状态进入的
-			sectionSetting.endStamp = _msg.stamp;
-			sectionSetting.endTime = _msg.time;
-			sectionSetting.timeConsumed = sectionSetting.endStamp - sectionSetting.startStamp;
-			console.log((sectionSetting.name + ' from ' + sectionSetting.startTime + ' to ' + sectionSetting.endTime).info);
-			console.log(('共耗时 ' + sectionSetting.timeConsumed/1000 + ' 秒').info);
+		if(sectionSetting.firstSection == true){//是第一个环节
+			_updateProcessStateFirstSection(_msg);
+		}else{//非第一个环节
+			var earlistNotCompltedLoop = _.findWhere(processRecords, {complted: false});
+			if(earlistNotCompltedLoop == null){
+				console.log('没有正在进行的流程'.error)
+				return;
+			}
+			//只要不是第一个环节，那么之前的环节没有结束时，不能开始本环节
+			var lastSection = _.chain(earlistNotCompltedLoop.sections)
+								.filter(function(_section){return _section.index < sectionSetting.index})
+								.max(function(_section){return _section.index})
+								.value();
+			if(lastSection != null){
+				console.log('检查上一个环节的完成状态：'.debug);
+				console.dir(lastSection);
+				if(lastSection.complted == false){
+					console.log('上一个环节尚未完成，本环节无法开始'.error);
+					return;
+				}
+			}else{
+				console.log('出现异常，不是第一个环节，但是找不到上一个环节'.error);
+				return;
+			}
 
-			if(sectionSetting.lastSection == true){
-				console.log('A plan complted!!'.info);
-				ep.emit('productionPlanComplted');
+			// console.log('最早未完成的循环：'.debug);
+			// console.dir(earlistNotCompltedLoop); 
+
+			if(sectionSetting.lastSection == true){//最后一个环节
+
+				_updateProcessStateLastSection(earlistNotCompltedLoop, _msg);
+
+			}else{//非第一和最后的环节
+				var section = _.findWhere(earlistNotCompltedLoop.sections, {index: sectionSetting.index});
+				if(section == null){
+					console.log('没有在流程中找到相应的环节'.error)
+					return;
+				} 
+				if(_msg.state == 'on'){
+					if(section.complted == true){
+						console.log('已经完成了，没法开始'.error)
+						return;
+					} 
+					if(section.startStamp > 0){
+						console.log('已经开始过了，无法再次开始'.error)
+						return;
+					} 
+					section.startStamp = _msg.stamp;
+					section.startTime = _msg.time;
+					console.log(("流程 (" + earlistNotCompltedLoop.index + ') 中 环节(' +  section.name + ') 开始于 ' + section.startTime).info);
+
+				}else if(_msg.state == 'off'){
+					if(section.complted == true){
+						console.log('已经完成了，没法开始'.error)
+						return;
+					} 
+					if(section.startStamp <= 0){
+						console.log('尚未开始的环节，无法结束'.error)
+						return;
+					} 
+					section.endStamp = _msg.stamp;
+					section.endTime = _msg.time;
+					console.log(('流程 (%d) 中 环节(%s) 运行时间从 %s 到 %s').info, 
+						earlistNotCompltedLoop.index, section.name, section.startTime, section.endTime);
+					// console.log(("流程 (" + earlistNotCompltedLoop.index + ') 中 环节(' +  section.name + ') 运行时间从 ' + section.startTime + ' 到 ' + section.endTime).info);
+					console.log(('共耗时 %d 秒').info, section.timeConsumed/1000);
+					// console.log(('共耗时 ' + section.timeConsumed/1000 + ' 秒').info);
+					_broadcastProductionData4BarChart(barchartsIndex, earlistNotCompltedLoop);//通知客户端更新图标数据
+					_broadcastProductionData4PieChart(piechartsIndex);
+				}
 			}
 		}
 	}
@@ -216,6 +393,7 @@ function _resetTotalProcessInfo(){
 	totalProcessStartStamp = 0;
 	totalProcessStopTime = '';
 	totalProcessStopStamp = 0;	
+	processRecords = [];
 }
 function _setTotalProcessStartInfo(){
 	bTotalProcessRunning = true;

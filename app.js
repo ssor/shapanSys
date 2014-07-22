@@ -16,6 +16,10 @@ deviceConfig = '/deviceConfig';
 addProcessIndex = '/addProcessIndex';
 processConfigIndex = '/processConfigIndex';
 planConfigIndex = '/planConfigIndex';
+barchartsIndex = '/barchartsIndex';
+piechartsIndex = '/piechartsIndex';
+
+
 
 var colors = require('colors');
 
@@ -89,6 +93,11 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/barchartsIndex', routes.barchartsIndex);
+app.get('/piechartsIndex', routes.piechartsIndex);
+app.get('/productionData4BarChart', routes.productionData4BarChart);
+app.get('/productionData4PieChart', routes.productionData4PieChart);
+// app.get('')
 // app.get('/deviceConfig', routes.deviceConfig);
 // app.get('/getBindedDevices', routes.getBindedDevices);
 // app.get('/resetDeviceConfig', routes.resetDeviceConfig);

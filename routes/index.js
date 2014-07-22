@@ -12,8 +12,31 @@ var deviceControl = require('./deviceControl');
 
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('main');
 };
+exports.barchartsIndex = function(req, res){
+	res.render('barchartsIndex', {categories: ['环节一', '环节二', '环节三']});
+}
+exports.piechartsIndex = function(req, res){
+	res.render('piechartsIndex', {categories: ['环节一', '环节二', '环节三']});
+
+}
+exports.productionData4BarChart = function(req, res){
+	var data = {};
+	data.columns = ['生产批次1'];
+	// data.categories = ['环节一', '环节二', '环节三'];
+	// console.dir(sectionSettings);
+	data.categories = _.without(_.map(sectionSettings, function(_section){return _section.index == 0? null : _section.name}), null);
+	_.times(_.size(data.categories), function(){data.columns.push(0)});
+	// console.dir(data.categories);
+	res.send(JSON.stringify(data));
+}
+exports.productionData4PieChart = function(req, res){
+	var data = {};
+	data.columns = _.without(_.map(sectionSettings, function(_section){return _section.index == 0? null : [_section.name, 1]}), null);
+	console.dir(data.columns);
+	res.send(JSON.stringify(data));
+}
 exports.productTypeList = function(req, res){
 	res.send(JSON.stringify(productTypeList));
 }
