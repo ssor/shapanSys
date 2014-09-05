@@ -19,10 +19,16 @@
 	text-decoration:none; 
 }
 .demo-panel-title{
-	height: 150px;
+	height: 140px;
 	padding-top: 10px;
 	background: #c5c4c0 url("/images/banner_bg.jpg") center top no-repeat fixed;
 }
 #lblTableTitleText{
-	text-align:center;font-size:21px;color: rgb(150,150,150);margin-top: 20px; margin-bottom: 0px;border-bottom-style: solid; border-bottom-color: rgba(128,128,128,0.2); border-bottom-width: 1px; padding-bottom: 10px;
+	text-align:center;font-size:21px;color: rgb(150,150,150);margin-top: 20px; margin-bottom: 0px;border-bottom-style: solid; border-bottom-color: rgba(128,128,128,0.08); border-bottom-width: 1px; padding-bottom: 10px;
+}
+#sayingContent{
+	text-align:left;font-size:23px;color: white;
+}
+#sayingAuthor{
+	text-align:right;font-size:16px;color: white;margin-right:10px;margin-top: 10px;
 }

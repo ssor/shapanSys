@@ -9,7 +9,7 @@ var countEachProducingAction = 3;
 
 var planStore = [];//计划列表
 var inventories = [];//记录库存
-var autoHandleNewOrder = true;
+var autoHandleNewOrder = false;
 
 ep.tail(eventNewOrderComingIn, newOrderComingIn);
 ep.tail(eventOrderDeleted, function(){
@@ -125,6 +125,20 @@ exports.setMinProductionQuantity = function(req, res){
 	countEachProducingAction = parseInt(req.body.quantity);
 	console.log(('setMinProductionQuantity = ' + countEachProducingAction).info);
 	res.send(JSON.stringify({code: 0}));
+}
+exports.compltePlan = function(){
+	var plan = _.findWhere(planStore, {complted: false});
+	if(plan != null){
+		return planDBUpdate({index: plan.index}, { $set: { complted: true } }).then(function(_num){
+			if(_num > 0){
+				plan.complted = true;
+				//通知客户端刷新
+				ep.emit('broadcastInfo', {url: planConfigIndex, cmd: 'reload', message: '有新订单已被自动处理'});
+			}else{
+				throw new Error('compltePlan error: no data in db');
+			} 
+		})
+	}
 }
 exports.disableAutoPlan = function(req, res){
 	autoHandleNewOrder = false;

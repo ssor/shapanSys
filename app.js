@@ -57,19 +57,26 @@ planDBRemove = Q.nbind(planDB.remove, planDB);
 planDBInsert = Q.nbind(planDB.insert, planDB);
 planDBUpdate = Q.nbind(planDB.update, planDB);
 
+var sayingDB      = new Datastore({ filename: 'sayings.db', autoload: true });
+sayingDBFind = Q.nbind(sayingDB.find, sayingDB);
+sayingDBRemove = Q.nbind(sayingDB.remove, sayingDB);
+sayingDBInsert = Q.nbind(sayingDB.insert, sayingDB);
+sayingDBUpdate = Q.nbind(sayingDB.update, sayingDB);
 
 
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-
 var wsServer = require('./routes/wsServer');
+var routes = require('./routes');
+var user = require('./routes/user');
 var productionProcess = require('./routes/productionProcess');
 var orderSimulation = require('./routes/orderSimulation');
 var productionPlan = require('./routes/productionPlan');
+
+
+
 var app = express();
 
 var server = wsServer.startWebSocketServer(app);
@@ -87,6 +94,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -97,6 +105,7 @@ app.get('/barchartsIndex', routes.barchartsIndex);
 app.get('/piechartsIndex', routes.piechartsIndex);
 app.get('/productionData4BarChart', routes.productionData4BarChart);
 app.get('/productionData4PieChart', routes.productionData4PieChart);
+app.get('/getRandomSaying', routes.getRandomSaying);
 // app.get('')
 // app.get('/deviceConfig', routes.deviceConfig);
 // app.get('/getBindedDevices', routes.getBindedDevices);

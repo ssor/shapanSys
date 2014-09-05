@@ -54,7 +54,7 @@ exports.orderConfigIndex = function(req, res){
 	res.render('orderConfigIndex', {product1: '产品一', product2: '产品二', product3: "产品三"});
 }
 exports.orderAutoIndex = function(req, res){
-	res.render('orderAutoIndex');
+	res.render('orderAutoIndex', {product1: '产品一', product2: '产品二', product3: "产品三"});
 }
 exports.addOrderIndex = function(req, res){
 	res.render('addOrderIndex', {product1: '产品一', product2: '产品二', product3: "产品三"});

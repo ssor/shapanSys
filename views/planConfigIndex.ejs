@@ -15,6 +15,13 @@
     <link href="/dataTable/jquery.dataTables.css" rel="stylesheet" media="screen">    
     <style type="text/css">
 
+          td.highlight {
+              background-color: rgba(0,256,0, 0.1) !important;
+          }
+          tr.highlight{
+              background-color: rgba(0,256,0, 0.1) !important;
+
+          }
 
 
       #lblTip{
@@ -55,6 +62,7 @@
                     // { "data": "" },
                 ]
             } );
+
             $('#dtProcess tbody').on( 'click', 'tr', function () {
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
@@ -64,10 +72,45 @@
                     $(this).addClass('selected');
                 }
             } );
+            
+            table.on('draw', function(){
+                // return;
+                var rowsCount = table.rows()[0].length;
+                for(var i = 0; i< rowsCount; i++){
+                    var data = table.row().nodes().data()[i];
+                    console.dir(data);
+                    if(data.complted == true){
+                        $(table.row(i).node()).addClass('highlight');
+                    }
+                    // console.log(data.deviceID);
+                    // if(data.deviceID == 'btn001'){
+
+                    //   $(table.cell(i,2).node()).addClass( 'highlight' );
+                    // }
+                  // $( table.row(0).node()).addClass( 'highlight' );
+                }
+                // $( table.column(2).nodes() ).addClass( 'highlight' );
+                // $(table.cell(1,1).node()).addClass( 'highlight' );
+            })
+
+
             $("#checkAutoPlan").change(checkboxChange);
 
             createWebSocket();
+            updateSaying();
+            setInterval(updateSaying, 30 * 1000);
+
         });
+        function openAboutWindow(){
+          $('#modalAbout').modal();
+        }    
+        function updateSaying(){
+            $.get('../getRandomSaying', function(_data){
+                var saying = JSON.parse(_data);
+                $('#sayingContent').text(saying.content);
+                $('#sayingAuthor').text(saying.author);
+            })
+        }        
         function checkboxChange(){
             var b = $("#checkAutoPlan").prop('checked');
             if(b == true){
@@ -162,8 +205,10 @@
             if(_cmd.cmd == 'reload'){
               table.ajax.reload();
               console.log(_cmd.message);
+              showMessage(_cmd.message);
             }else{
               console.log(_cmd.message);
+              showMessage(_cmd.message);
             }
         }   
         function onOpen(evt) {
@@ -180,6 +225,17 @@
             $('#lblTip').css('display', 'none');
             $('#lblTableTitleText').css('margin-top', '40px');
         }
+        function showMessage(_msg){
+          if(_msg != null && _msg.length > 0){
+              var ele = 
+                '<div class="alert alert-success alert-dismissible" role="alert" >'+
+                    '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'+
+                    '<div> '+ _msg +'</div>'+
+                '</div>';
+              $('#messageContainer').append(ele);            
+          }
+
+        }
     </script>
   </head>
   <body>
@@ -193,11 +249,15 @@
                 <div class="col-xs-11 col-sm-11 col-md-11 col-md-lg-11">
                     <div style="margin-top: 48px; ">
 
-                          <a class= "navFunc" style="right:270px;">订单 </a>
-                          <a class= "navFunc" style="right:215px;color: rgb(100,100,100);">计划 </a>
-                          <a class= "navFunc" style="right:125px;">实时图表 </a>
-                          <a class= "navFunc" style="right:70px;">统计 </a>
-                          <a class= "navFunc" style="right:20px;">关于 </a>
+                          <a class= "navFunc" style="right:525px;">教程 </a>
+                          <a class= "navFunc" style="right:470px;"  href="/orderConfigIndex" target="_blank">订单 </a>
+                          <a class= "navFunc " style="right:415px;" href="/processConfigIndex" target="_blank">流程 </a>
+                          <a class= "navFunc " style="right:360px;color: rgb(100,100,100);" href="/planConfigIndex" target="_blank">计划 </a>
+                          <a class= "navFunc" style="right:240px;"  href="/barchartsIndex" target="_blank">实时时长统计 </a>
+                          <a class= "navFunc" style="right:120px;"  href="/piechartsIndex" target="_blank">实时比重统计 </a>
+                          <a class= "navFunc" style="right:70px;">导出 </a>
+                          <!-- <a class= "navFunc" style="right:20px;" onclick = "showMessage()">关于 </a> -->
+                          <a class= "navFunc" style="right:20px;" onclick = "openAboutWindow()">关于 </a>
                      </div>
                 </div>
             </div>
@@ -207,12 +267,12 @@
     <div class="demo-panel-title"> 
         <!-- <h3  style="text-align:center;font-size:20px;color: white;margin-bottom: 10px;"></h3> -->
         <div class = "container">
-            <div class="row" style="margin-top:30px;">
+            <div class="row" style="margin-top:20px;">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12">
-                    <div style="text-align:left;font-size:30px;color: white;"> “学习丰田精益生产是格兰仕的必由之路。”</div>
+                    <div id= "sayingContent" style=""> </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12">
-                    <div style="text-align:right;font-size:20px;color: white;margin-right:10px;margin-top: 15px;">——梁昭贤（格兰仕总裁）</div>
+                    <div id="sayingAuthor" style=""></div>
                 </div>
                 
             </div>
@@ -250,6 +310,11 @@
 
 
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="margin-top: 15px;text-align:center;" id="messageContainer">
+
+
+        </div>
       </div>
 <!--       <div style="text-align:center;text-align: center; border-top-style: solid; border-top-width: 1px; padding-top: 20px; border-top-color: rgba(128,128,128,0.3); padding-bottom: 20px;"> 
         <button type="button" class="btn btn-danger btn-lg" style="" onclick = "resetDeviceConfig()">重新配置所有设备
@@ -257,11 +322,39 @@
       </div>
  -->    
     </div>
-    <footer>
-    </footer>
+<!--    <div class="container" style="margin-left: 0px; margin-right: 0px; max-width: 100%; background-color: rgb(240,240,240); max-width: 100%; height: 60px;position: fixed; width: 100%; bottom: 0px;">
+      <div class="row"  id = "row_container">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3" style=""> </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6" style="text-align: center; font-size: 15px; margin-bottom: 0px; margin-top: 20px; color: rgb(180,180,180);">
+              北京精益生产科技发展有限公司
+          </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3" style=""> </div>
+        
+      </div>
+    </div>  -->
     
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/layer/layer.min.js"></script>
     <script src="/dataTable/jquery.dataTables.js"></script>
+      <!-- Modal -->
+      <div class="modal fade" id="modalAbout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: rgb(50,50,50); color: white;">
+              <button type="button" class="close" data-dismiss="modal"><!-- <span aria-hidden="true">&times;</span> --><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">关于</h4>
+            </div>
+            <div class="modal-body">
+              <div style="text-align: center; font-size: 19px; margin-top: 20px;">
+                精益生产沙盘V0.8
+              </div>
+            </div>
+            <div class="modal-footer" style="text-align: center;">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>    
   </body>
 </html>

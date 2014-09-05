@@ -5,7 +5,7 @@
 var timeFormater 	   = require('./timeFormat').getCurrentTimeCombining;
 var _ = require("underscore");
 var deviceControl = require('./deviceControl');
-
+var productionPlan = require('./productionPlan');
 
 exports.updateProcessState = _updateProcessState;
 
@@ -38,7 +38,8 @@ var processRecords = [];//生产循环列表
 // sectionSettings.push({flag: 'btn002', processName: 'Section2', timeConsumed: 0, startStamp: 0, endStamp: 0, startTime: '', endTime: '', lastSection: true});
 
 sectionDBFind({}).then(_initialProcessTemp);
-
+// ep.tail('startRunningProcess', _startRunningProcess);
+_startRunningProcess();
 
 exports.processList = function(req, res){
 	console.dir(sections);
@@ -54,9 +55,9 @@ exports.addProcessInfo = function(req, res){
 	console.dir(body);
 	// console.dir(_.findWhere(sections, {index: index}));
 
-	var b = index > 0 && _.findWhere(sections, {index: index}) == null;
+	var b = index > 0 && index < 256 && _.findWhere(sections, {index: index}) == null;
 	if(b == false){
-		res.send(JSON.stringify({code: 1, message: '流程编号不能小于1，并且不能和现有流程的编号相同！'}));
+		res.send(JSON.stringify({code: 1, message: '流程编号不能小于1并且不能大于256，同时不能和现有流程的编号相同！'}));
 		return;
 	}
 	b = body.deviceID != null && body.deviceID.length > 0 && body.deviceID.length <= 6;
@@ -73,9 +74,10 @@ exports.addProcessInfo = function(req, res){
 	body.note = (body.note == null)? '':body.note;
 	var newP = {index: index, name: body.name, note: body.note, deviceID: body.deviceID};
 	sectionDBInsert(newP).then(function(){
-		// sections.push(newP);//to db
+		sections.push(newP);//to db
 		// console.dir(sections);
-		_initialProcessTemp();//流传环节发生变化，重新初始化
+		_initialSectionSettings(sections);//流传环节发生变化，重新初始化
+		// _initialProcessTemp(sections);
 		//todo  删除之前的历史记录
 
 		res.send(JSON.stringify({code: 0}));
@@ -89,8 +91,9 @@ exports.deleteProcessConfig = function(req, res){
 	var index = req.body.index;
 	sectionDBRemove({index: parseInt(index)}).then(function(_num){
 		console.log('deleteProcessConfig => ' + _num + ' process deleted');
-		// sections = _.filter(sections, function(_process){return _process.index != index});
-		_initialProcessTemp();
+		sections = _.filter(sections, function(_process){return _process.index != index});
+		_initialSectionSettings(sections);//流传环节发生变化，重新初始化
+		// _initialProcessTemp(sections);
 		//todo  删除之前的历史记录
 
 		res.send(JSON.stringify({code: 0}));
@@ -114,6 +117,7 @@ exports.runningIndex = function(req, res){
 function _startRunningProcess(){
 	deviceControl.prepareSerialPortList();
 	deviceControl.startSerialPortListening(serialPortList, _updateProcessState);
+	// console.log('_startRunningProcess ok'.error);
 }
 function scanAllDevices(_url){
 	deviceControl.prepareSerialPortList();
@@ -130,29 +134,39 @@ function scanAllDevices(_url){
 }
 
 
-
+// 只负责初始化必须的环节：总流程和质检环节
 function _initialProcessTemp(_sections){
 	//添加默认的000按钮作为总流程按钮
 	var btn000 = _.findWhere(_sections, {deviceID: 'btn000'});
 	if(btn000 == null){
 		var process000 = {index: 0, name: '总流程', note: '生产全流程', deviceID: 'btn000'}; 
 		sectionDBInsert(process000).then(function(){
+			console.log('push 000'.debug);
+			console.dir(_sections);
 			_sections.push(process000);
-
-			sections = _.sortBy(_sections, function(_section){return _section.index});
-			_initialSectionSettings(sections);
-
-		}).catch(function(error){
-			console.log(('sys error : ' + error.message).error);
-		})
+		}).then(function(){
+			var btn001 = _.findWhere(_sections, {deviceID: 'btn001'});
+			if(btn001 == null){
+				var process001 = {index: 256, name: '质检', note: '最后的环节', deviceID: 'btn256'}; 
+				sectionDBInsert(process001).then(function(){
+					console.log('push 256'.debug);
+					console.dir(_sections);
+					_sections.push(process001);
+				}).then(function(){
+						_initialSectionSettings(_sections);
+				})
+			}			
+		}).catch(function(error){ console.log(('sys error : ' + error.message).error); })
 	}else{
-		sections = _.sortBy(_sections, function(_section){return _section.index});
-		console.log('sections => '.data);
-		console.dir(sections);
-		_initialSectionSettings(sections);
-	}	
+		// sections = _sections;
+		_initialSectionSettings(_sections);
+	}
 }
+// 重置环节信息
 function _initialSectionSettings(_sections){
+	sections = _.sortBy(_sections, function(_section){return _section.index});
+	console.log('sections => '.data);
+	console.dir(sections);	
 	sectionSettings = _.map(_sections, function(_section){
 		return {index: _section.index, deviceID: _section.deviceID, 
 				name: _section.name, timeConsumed: 0, startStamp: 0, 
@@ -162,7 +176,7 @@ function _initialSectionSettings(_sections){
 	if(maxIndexSection != null && maxIndexSection.index > 0){
 		_.findWhere(sectionSettings, {index: maxIndexSection.index}).lastSection = true;
 	}
-	var minIndexSection = _.min(_.filter(sectionSettings, function(_section){return _section.index > 0}), function(_s){return _s.index;});
+	var minIndexSection = _.min(_.filter(sectionSettings, function(_section){return _section.index > 0 && _section.index < 256}), function(_s){return _s.index;});
 	// console.log('minIndexSection => ');
 	// console.dir(minIndexSection);
 	if(minIndexSection != null && minIndexSection.index > 0){
@@ -273,6 +287,9 @@ function _updateProcessStateLastSection(_productionLoop, _msg){
 		lastSection.endTime = _msg.time;
 		lastSection.timeConsumed = lastSection.endStamp - lastSection.startStamp;
 		lastSection.complted = true;
+		//认为完成一个生产计划
+		productionPlan.compltePlan();
+		
 		console.log(("流程 (" + _productionLoop.index + ') 中 环节(' +  lastSection.name + ') 运行时间从 ' + lastSection.startTime + ' 到 ' + lastSection.endTime).info);
 		console.log(('共耗时 ' + lastSection.timeConsumed/1000 + ' 秒').info);
 		_broadcastProductionData4BarChart(barchartsIndex, _productionLoop);//通知客户端更新图标数据

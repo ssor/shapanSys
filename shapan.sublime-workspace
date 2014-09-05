@@ -4,12 +4,440 @@
 		"selected_items":
 		[
 			[
+				"ini",
+				"initialize"
+			],
+			[
+				"seri",
+				"serialPort"
+			],
+			[
+				"_sr",
+				"_serialPort"
+			],
+			[
+				"_ser",
+				"_serialPortList"
+			],
+			[
+				"_s",
+				"_sections"
+			],
+			[
+				"_ini",
+				"_initialSectionSettings"
+			],
+			[
+				"btn",
+				"btn001"
+			],
+			[
+				"_se",
+				"_sections"
+			],
+			[
+				"sec",
+				"sections"
+			],
+			[
+				"say",
+				"sayingDBFind"
+			],
+			[
+				"piech",
+				"piechartsIndex"
+			],
+			[
+				"_br",
+				"_broadcastProductionData4PieChart"
+			],
+			[
+				"group",
+				"groupBy"
+			],
+			[
+				"sectios",
+				"sections"
+			],
+			[
+				"productio",
+				"productionData"
+			],
+			[
+				"tim",
+				"timeConsumed"
+			],
+			[
+				"cate",
+				"categories"
+			],
+			[
+				"_co",
+				"_column"
+			],
+			[
+				"col",
+				"columns"
+			],
+			[
+				"secs",
+				"sections"
+			],
+			[
+				"_up",
+				"_updateProcessStateLastSection"
+			],
+			[
+				"_upd",
+				"_updateProcessStateFirstSection"
+			],
+			[
+				"erl",
+				"earlistNotCompltedLoop"
+			],
+			[
+				"se",
+				"sections"
+			],
+			[
+				"proces",
+				"processRecords"
+			],
+			[
+				"end",
+				"endTime"
+			],
+			[
+				"star",
+				"startStamp"
+			],
+			[
+				"sect",
+				"section"
+			],
+			[
+				"stars",
+				"startStamp"
+			],
+			[
+				"las",
+				"lastSection"
+			],
+			[
+				"start",
+				"startStamp"
+			],
+			[
+				"la",
+				"last"
+			],
+			[
+				"fir",
+				"firstSection"
+			],
+			[
+				"sections",
+				"sectionSettings"
+			],
+			[
+				"_sec",
+				"_section"
+			],
+			[
+				"_pro",
+				"_processes"
+			],
+			[
+				"produprostart",
+				"productionProcessStartTime"
+			],
+			[
+				"max",
+				"maxIndexProcess"
+			],
+			[
+				"_p",
+				"_processes"
+			],
+			[
+				"devic",
+				"deviceID"
+			],
+			[
+				"_proce",
+				"_processes"
+			],
+			[
+				"process",
+				"processSettings"
+			],
+			[
+				"qua",
+				"quantity"
+			],
+			[
+				"_pl",
+				"_planGroup"
+			],
+			[
+				"quan",
+				"quantity"
+			],
+			[
+				"quasu",
+				"quantity1Sum"
+			],
+			[
+				"_new",
+				"_newPlan"
+			],
+			[
+				"_or",
+				"_order"
+			],
+			[
+				"_nw",
+				"_newOrders"
+			],
+			[
+				"newOr",
+				"newOrderComingIn"
+			],
+			[
+				"input",
+				"inputProductionQuantity"
+			],
+			[
+				"cou",
+				"countEachProducingAction"
+			],
+			[
+				"Pro",
+				"ProductinoPlan"
+			],
+			[
+				"I",
+				"Infinity"
+			],
+			[
+				"maxIn",
+				"maxIndexPlan"
+			],
+			[
+				"_ha",
+				"_handleNewOrder"
+			],
+			[
+				"bra",
+				"broadcastInfo"
+			],
+			[
+				"eve",
+				"eventOrderDeleted"
+			],
+			[
+				"even",
+				"eventNewOrderComingIn"
+			],
+			[
+				"event",
+				"eventNewOrderComingIn"
+			],
+			[
+				"ord",
+				"orderDeleted"
+			],
+			[
+				"new",
+				"newOrderComingIn"
+			],
+			[
+				"ha",
+				"handlers"
+			],
+			[
+				"bt",
+				"btn000"
+			],
+			[
+				"_pr",
+				"_process"
+			],
+			[
+				"_proc",
+				"_processes"
+			],
+			[
+				"che",
+				"checked"
+			],
+			[
+				"chek",
+				"checkboxChange"
+			],
+			[
+				"_han",
+				"_handleNewOrder"
+			],
+			[
+				"auto",
+				"autoHandleNewOrder"
+			],
+			[
+				"dis",
+				"disableAutoPlan"
+			],
+			[
+				"pla",
+				"planStore"
+			],
+			[
+				"plan",
+				"productionPlan"
+			],
+			[
+				"or",
+				"orders"
+			],
+			[
+				"dele",
+				"deleteOrder"
+			],
+			[
+				"produc",
+				"productTypeList"
+			],
+			[
+				"addor",
+				"addOrderIndex"
+			],
+			[
 				"add",
-				"addSerialPortList"
+				"addOrder"
+			],
+			[
+				"qu",
+				"quantity1"
+			],
+			[
+				"par",
+				"parseInt"
+			],
+			[
+				"orders",
+				"orderSimulation"
+			],
+			[
+				"ex",
+				"exports"
+			],
+			[
+				"sc",
+				"scanDeviceChange"
+			],
+			[
+				"string",
+				"stringify"
+			],
+			[
+				"device",
+				"deviceID"
+			],
+			[
+				"devi",
+				"deviceID_List"
+			],
+			[
+				"_proes",
+				"_processes"
+			],
+			[
+				"scan",
+				"scanAllDevices"
+			],
+			[
+				"sel",
+				"selectedIndex"
+			],
+			[
+				"dat",
+				"data"
+			],
+			[
+				"find",
+				"findWhere"
+			],
+			[
+				"procin",
+				"processIndex"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"proc",
+				"processNote"
+			],
+			[
+				"iput",
+				"inputProcessName"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"datt",
+				"dataTable"
+			],
+			[
+				"lbl",
+				"lblTip"
 			],
 			[
 				"ser",
-				"serialPortList"
+				"serialPort"
+			],
+			[
+				"por",
+				"portNickName"
+			],
+			[
+				"_con",
+				"_config"
+			],
+			[
+				"port",
+				"portName"
+			],
+			[
+				"_po",
+				"_port"
+			],
+			[
+				"po",
+				"portsFindInSys"
+			],
+			[
+				"clea",
+				"clearAddedDevices"
+			],
+			[
+				"res",
+				"resetDeviceConfig"
+			],
+			[
+				"fi",
+				"filter"
+			],
+			[
+				"upd",
+				"upgradeReq"
 			],
 			[
 				"_por",
@@ -18,10 +446,6 @@
 			[
 				"con",
 				"configButtons"
-			],
-			[
-				"or",
-				"orders"
 			],
 			[
 				"_set",
@@ -60,10 +484,6 @@
 				"shell"
 			],
 			[
-				"cou",
-				"count"
-			],
-			[
 				"o",
 				"ordersCountArray"
 			],
@@ -72,36 +492,12 @@
 				"startOrderSimulation"
 			],
 			[
-				"_s",
-				"_startOrderSimulation"
-			],
-			[
-				"end",
-				"endTime"
-			],
-			[
 				"processs",
 				"processSetting"
 			],
 			[
-				"star",
-				"startSinglePort"
-			],
-			[
-				"tim",
-				"timeStamp"
-			],
-			[
 				"msg",
 				"msges"
-			],
-			[
-				"le",
-				"len"
-			],
-			[
-				"la",
-				"lastIndex"
 			],
 			[
 				"ma",
@@ -118,402 +514,6 @@
 			[
 				"_us",
 				"_userName"
-			],
-			[
-				"_cl",
-				"_classID"
-			],
-			[
-				"_clss",
-				"_classID"
-			],
-			[
-				"err",
-				"err"
-			],
-			[
-				"blo",
-				"blocked"
-			],
-			[
-				"bl",
-				"blockSpeaking"
-			],
-			[
-				"clase",
-				"classSet"
-			],
-			[
-				"new",
-				"newClassApplied"
-			],
-			[
-				"cli",
-				"classID"
-			],
-			[
-				"clad",
-				"classDBFindOne"
-			],
-			[
-				"txtgh",
-				"txtghName"
-			],
-			[
-				"txt",
-				"txtCreator"
-			],
-			[
-				"tx",
-				"txtClassID"
-			],
-			[
-				"cl",
-				"classID"
-			],
-			[
-				"path",
-				"pathRoute"
-			],
-			[
-				"user",
-				"userID"
-			],
-			[
-				"classdb",
-				"classDBFindOne"
-			],
-			[
-				"us",
-				"username"
-			],
-			[
-				"_u",
-				"_user"
-			],
-			[
-				"usedb",
-				"userDBFind"
-			],
-			[
-				"usd",
-				"userDBUpdate"
-			],
-			[
-				"usef",
-				"userDBFindOne"
-			],
-			[
-				"ghID",
-				"ghID"
-			],
-			[
-				"userd",
-				"userDBFind"
-			],
-			[
-				"spe",
-				"speakerState"
-			],
-			[
-				"gh",
-				"ghIDInfo"
-			],
-			[
-				"_gh",
-				"_ghIDInfo"
-			],
-			[
-				"app",
-				"appendDevice"
-			],
-			[
-				"regse",
-				"regSetClassTip"
-			],
-			[
-				"get",
-				"getCommandType"
-			],
-			[
-				"com",
-				"commandTypeInfo"
-			],
-			[
-				"fin",
-				"findWhere"
-			],
-			[
-				"regS",
-				"regSetName"
-			],
-			[
-				"_re",
-				"_receivedMsg"
-			],
-			[
-				"_c",
-				"_car"
-			],
-			[
-				"bag",
-				"bagage"
-			],
-			[
-				"ob",
-				"objError"
-			],
-			[
-				"obj",
-				"objOk"
-			],
-			[
-				"ba",
-				"bagageID"
-			],
-			[
-				"getb",
-				"getBagageStatus"
-			],
-			[
-				"remo",
-				"removedBagage"
-			],
-			[
-				"er",
-				"error"
-			],
-			[
-				"q",
-				"Q"
-			],
-			[
-				"bagdb",
-				"bagagedb"
-			],
-			[
-				"req",
-				"require"
-			],
-			[
-				"res",
-				"results"
-			],
-			[
-				"_ca",
-				"_carlist"
-			],
-			[
-				"carl",
-				"carListResBack"
-			],
-			[
-				"mar",
-				"margin-right"
-			],
-			[
-				"fon",
-				"font-size"
-			],
-			[
-				"v",
-				"versionDate"
-			],
-			[
-				"do",
-				"downloadMap"
-			],
-			[
-				"dow",
-				"downloadTimeStamp"
-			],
-			[
-				"poi",
-				"point"
-			],
-			[
-				"em",
-				"emit"
-			],
-			[
-				"ima",
-				"imageName"
-			],
-			[
-				"badb",
-				"bagagedb"
-			],
-			[
-				"ev",
-				"eventRemoveBagage"
-			],
-			[
-				"ins",
-				"insertBagageCarBindingRecord2DB"
-			],
-			[
-				"getCid",
-				"getBindedCarIDOver"
-			],
-			[
-				"str",
-				"startMnting"
-			],
-			[
-				"st",
-				"startBagageMnting"
-			],
-			[
-				"sta",
-				"startMnting"
-			],
-			[
-				"dat",
-				"dateStart"
-			],
-			[
-				"ca",
-				"carID"
-			],
-			[
-				"getCar",
-				"getCarBagageMap"
-			],
-			[
-				"che",
-				"checkChangeTrend"
-			],
-			[
-				"tr",
-				"trendsRise"
-			],
-			[
-				"M",
-				"MAX_HISTORY_YEAR"
-			],
-			[
-				"he",
-				"heapTotal"
-			],
-			[
-				"meu",
-				"memuse"
-			],
-			[
-				"mem",
-				"memoryLasted"
-			],
-			[
-				"me",
-				"memoryLasted"
-			],
-			[
-				"um",
-				"usedMemPercent"
-			],
-			[
-				"se",
-				"session"
-			],
-			[
-				"car",
-				"carID"
-			],
-			[
-				"sel",
-				"selectCars"
-			],
-			[
-				"el",
-				"earliestPoint"
-			],
-			[
-				"_p",
-				"_point"
-			],
-			[
-				"db",
-				"dbInfo"
-			],
-			[
-				"ge",
-				"getCarListOfSpecifiedUser"
-			],
-			[
-				"lo",
-				"localEP"
-			],
-			[
-				"te",
-				"testA"
-			],
-			[
-				"carty",
-				"carTypeList"
-			],
-			[
-				"usn",
-				"username"
-			],
-			[
-				"log",
-				"logout"
-			],
-			[
-				"use",
-				"user"
-			],
-			[
-				"nu",
-				"numberReplaced"
-			],
-			[
-				"fo",
-				"footer"
-			],
-			[
-				"cont",
-				"container"
-			],
-			[
-				"win",
-				"windowHeight"
-			],
-			[
-				"ja",
-				"javascripts"
-			],
-			[
-				"ch",
-				"check_geolocation_support"
-			],
-			[
-				"mo",
-				"mobileClient"
-			],
-			[
-				"del",
-				"deleted"
-			],
-			[
-				"sim",
-				"simpleParser"
-			],
-			[
-				"pa",
-				"parserType"
-			],
-			[
-				"_read",
-				"_readerPortNameMap"
-			],
-			[
-				"col",
-				"color"
-			],
-			[
-				"mini",
-				"minInventorySettings"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 1529,
+				"buffer_size": 5109,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,47 +531,7 @@
 			"file": "routes/index.js",
 			"settings":
 			{
-				"buffer_size": 6010,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "routes/orderSimulation.js",
-			"settings":
-			{
-				"buffer_size": 4331,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "routes/productionPlan.js",
-			"settings":
-			{
-				"buffer_size": 1926,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "routes/productionProcess.js",
-			"settings":
-			{
-				"buffer_size": 2537,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "routes/timeFormat.js",
-			"settings":
-			{
-				"buffer_size": 1048,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/deviceConfig.ejs",
-			"settings":
-			{
-				"buffer_size": 6196,
+				"buffer_size": 3212,
 				"line_ending": "Unix"
 			}
 		},
@@ -579,8 +539,160 @@
 			"file": "routes/wsServer.js",
 			"settings":
 			{
-				"buffer_size": 2185,
+				"buffer_size": 2809,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/orderAutoIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 5014,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/addOrderIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 3940,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/addPlanIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 3568,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/planAutoSettingIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 2863,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/addProcessIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 6139,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/runningIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 223,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/productionPlan.js",
+			"settings":
+			{
+				"buffer_size": 7476,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/orderSimulation.js",
+			"settings":
+			{
+				"buffer_size": 8853,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/productionProcess.js",
+			"settings":
+			{
+				"buffer_size": 15883,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/deviceControl.js",
+			"settings":
+			{
+				"buffer_size": 4097,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/test.js",
+			"settings":
+			{
+				"buffer_size": 3607,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/stylesheets/style.css",
+			"settings":
+			{
+				"buffer_size": 889,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/main.ejs",
+			"settings":
+			{
+				"buffer_size": 5723,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/piechartsIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 8146,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/barchartsIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 9272,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/planConfigIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 14530,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/orderConfigIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 11080,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/processConfigIndex.ejs",
+			"settings":
+			{
+				"buffer_size": 12698,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "node_modules/trivial-port/serialport.js",
+			"settings":
+			{
+				"buffer_size": 5867,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -616,9 +728,20 @@
 	},
 	"file_history":
 	[
+		"/Users/ssor/Documents/program/nodejs/shapanSys/node_modules/trivial-port/serialport.js",
+		"/Users/ssor/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/ssor/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/barcharts.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/piecharts.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/echarts.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/addProcessIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/processConfigIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/deviceConfig.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/AddProcessIndex.ejs",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/routes/timeFormat.js",
+		"/Users/ssor/Documents/program/nodejs/shapanSys/views/processConfig.ejs",
 		"/Users/ssor/Documents/program/nodejs/shapanSys/views/carbinet2.ejs",
 		"/Users/ssor/Documents/program/nodejs/shapanSys/views/index.ejs",
-		"/Users/ssor/Documents/program/nodejs/shapanSys/routes/timeFormat.js",
 		"/Users/ssor/Documents/program/golang/hello.go",
 		"/Users/ssor/Documents/program/nodejs/winxintucao/test/xmlParser.js",
 		"/Users/ssor/Documents/program/nodejs/winxintucao/views/classManageChangepwdIndex.ejs",
@@ -732,10 +855,7 @@
 		"/Users/ssor/Documents/program/nodejs/microblog/views/layout.ejs",
 		"/Users/ssor/Documents/program/nodejs/package.json",
 		"/Users/ssor/Documents/program/nodejs/microblog/package.json",
-		"/Users/ssor/Documents/program/nodejs/microblog/views/index.jade",
-		"/Users/ssor/Documents/program/nodejs/microblog/app.js",
-		"/Users/ssor/Documents/program/nodejs/microblog/routes/index.js",
-		"/Users/ssor/Documents/program/nodejs/microblog/views/index.ejs"
+		"/Users/ssor/Documents/program/nodejs/microblog/views/index.jade"
 	],
 	"find":
 	{
@@ -753,134 +873,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"querystring",
+			"_startRunningProcess",
+			"_updateProcessState",
+			"_startRunningProcess",
+			"deviceControl",
+			"_initialProcessTemp",
+			"process000",
+			"_initialProcessTemp",
+			"12",
+			"200",
+			"12",
+			"planConfigIndex",
+			"autoHandleNewOrder",
+			"33",
+			"compltePlan",
+			"ProductinoPlan",
+			"_addNewPlanToStore",
 			"planStore",
-			"addSerialPortList",
-			"configButtonOK",
-			"portsInSys",
-			"_resetProcessRecord",
-			"_order",
-			"orderStore",
-			"handleNewOrder",
-			"orders",
-			"ordersCountArray",
-			"_startOrderSimulation",
-			"_publish",
-			"_publishOrder",
-			"_startOrderSimulation",
-			"_port",
-			"_portName",
-			"_count",
-			"737",
-			"leftCount",
-			"startOrderSimulation",
-			"star",
-			"startOrderSimulation",
-			"startSinglePort",
+			"_initialProcessTemp",
+			"sys error",
+			"col-xs-3",
+			"modalAbout",
+			"openAboutWindow",
+			"modalAbout",
+			"say",
+			"getRandomSaying",
+			")',",
+			"planDB",
+			"md",
+			"lblDeviceListText",
+			"btnPanel",
+			"panelText",
+			"p",
+			"lblDeviceListText",
+			"p",
+			"_broadcastProductionData4BarChart",
+			"_broadcastProductionData",
+			"productionData4BarChart",
+			"productionData",
+			"barchartsIndex",
+			"latestProductionLoop",
+			"barcharts",
+			"sectionSettings",
+			"循环四",
+			"循环",
+			"sectionSetting",
+			"earlistNotCompltedLoop",
+			"latestProductionLoop",
+			"_resetTotalProcessInfo",
+			"lastProductionLoop",
+			"lastSection",
+			"section",
+			"lastSection",
+			"firstSection",
+			"startTime",
+			"sectionSetting",
+			"firstSection",
+			"maxIndexProcess",
+			"lastProcess",
+			"_resetProcessInfo",
+			"_setProcessStartInfo",
+			"_setProcessStopInfo",
+			"processSetting",
+			"processDBInsert",
+			"sectionDBInsert",
+			"processDBRemove",
+			"processDBInsert",
+			"processDB",
+			"processes",
+			"_process",
+			"_processes",
+			"_initialProcessSettings",
+			"productionProcessStopStamp",
+			"productionProcessStopTime",
+			"productionProcessStartStamp",
+			"productionProcessStartTime",
+			"bProductionProcessRunning",
+			"processSettings",
+			"ProcessSettings",
+			"processSettings",
+			"console",
 			"data",
-			"Port",
-			"port",
-			"parseMultyCmds",
-			"stroreUserInfo",
-			"_user",
-			"initialDB",
-			"blockState",
-			"userName",
-			"ghID",
-			"blockState",
-			"classInfo",
-			"initialDB",
-			"div",
-			"initialDB",
-			"classID",
-			"creator",
-			"classID",
-			"tip",
-			"classID",
-			"ghName",
-			"classID",
-			"classApply",
-			"txtghRegName",
-			"password",
-			"username",
-			"login",
-			"Login",
-			"login",
-			"true",
-			"false",
-			"initialDB",
-			"userID",
-			"classManageUserIndex",
-			"classManageLeft",
-			"user",
-			"classRoute",
-			"class",
-			"classManageChangepwdIndex",
-			"classManageUserIndex",
-			"classManageTopIndex",
-			"classManageLeft",
-			"userManage",
-			"initialDB",
-			"stroreUserInfo",
-			"getCommandType",
-			"stroreUserInfo",
-			"initialDB",
-			"user",
-			"speakerState",
-			"ghID",
-			"_id",
-			"user",
-			"classInfo",
-			"ghInfo",
-			"initialClass",
-			"stroreUserInfo",
-			"managerList",
-			"setSpeaker",
-			"userList4Speaker",
-			"userList",
-			"false",
-			"speakerState",
-			"speakerName",
-			"setSpeaker",
-			"setSpeakerIndex",
-			"setUserStateIndex",
-			"setSpeakerIndex",
-			"true",
-			"false",
-			"setSpoker",
-			"userID",
-			"ghIDInfo",
-			"classManageTopIndex",
-			"classManageChangepwdIndex",
-			"classManageChangepwd",
-			"classManageTop",
-			"classManageChangepwd",
-			"classManageLeft",
-			"ghInfo",
-			"5",
-			"row_container",
-			"appendDevice",
-			"deviceInfo",
-			"regClassTip",
-			"helpTip",
-			"regHelpTip",
-			"stroreUserInfo",
-			"regTip",
-			"reg",
-			"isLegel",
-			"listeningPort",
-			"wsServerTagRead",
-			"checkMsgState",
-			"getCarList",
-			"getCarListOfSpecifiedUser",
-			"getPointListFromDB",
-			"getCarListOver",
-			"_removeBagageCarBinding",
-			"statelistAll",
+			"processSettings",
+			"_updateProcessState",
+			"bProductionProcessRunning",
+			"configButtons",
+			"scanDeviceChange",
+			"产品",
+			"_handleNewOrder",
+			"_orders",
+			"processDB",
+			"inputOrderQuantity",
+			"addNewPlanToStore",
+			"newPlan",
+			"_handleNewOrder",
+			"emit",
+			"_handleNewOrder",
+			"deviceConfigDB",
+			"resetDeviceConfig",
+			"_handler",
+			"showPlanAutoSettingIndex",
+			"checkboxChange",
+			"disableAutoPlan",
+			"checkAutoPlan",
 			"obj",
-			"timeFormater",
-			"removeBagageCarBinding",
-			"removedBagage"
+			"order",
+			"_handleNewOrder",
+			"productionPlan",
+			"addOrder",
+			"newOrder",
+			"orderAutoIndex",
+			"orders",
+			"productCountList",
+			"_order",
+			"orders",
+			"submitProcessInfo",
+			"showAddProcessFrame",
+			"orderConfigIndex",
+			"deviceConfig",
+			"getAllUSBDevices",
+			"routes",
+			"dgram",
+			"checkReaderState",
+			"parseMultyCmds",
+			"getNewMsg",
+			"parseMultyCmds",
+			"getNewMsg",
+			"diviceID_List",
+			"diviceIDList"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -898,7 +1018,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 12,
 			"sheets":
 			[
 				{
@@ -906,15 +1026,15 @@
 					"file": "app.js",
 					"settings":
 					{
-						"buffer_size": 1529,
+						"buffer_size": 5109,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								78,
-								90
+								2457,
+								2457
 							]
 						],
 						"settings":
@@ -924,7 +1044,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 894.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -934,41 +1054,42 @@
 					"file": "routes/index.js",
 					"settings":
 					{
-						"buffer_size": 6010,
+						"buffer_size": 3212,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3102,
-								3102
+								394,
+								394
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 870.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "routes/orderSimulation.js",
+					"file": "routes/wsServer.js",
 					"settings":
 					{
-						"buffer_size": 4331,
+						"buffer_size": 2809,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								264,
-								264
+								172,
+								172
 							]
 						],
 						"settings":
@@ -977,106 +1098,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 68.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "routes/productionPlan.js",
+					"file": "views/orderAutoIndex.ejs",
 					"settings":
 					{
-						"buffer_size": 1926,
+						"buffer_size": 5014,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								709,
-								709
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 14.0,
-						"translation.y": 1.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "routes/productionProcess.js",
-					"settings":
-					{
-						"buffer_size": 2537,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								769,
-								776
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "routes/timeFormat.js",
-					"settings":
-					{
-						"buffer_size": 1048,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								927,
-								935
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 87.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "views/deviceConfig.ejs",
-					"settings":
-					{
-						"buffer_size": 6196,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1175,
-								1175
+								312,
+								312
 							]
 						],
 						"settings":
@@ -1086,25 +1126,178 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 191.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "routes/wsServer.js",
+					"buffer": 4,
+					"file": "views/addOrderIndex.ejs",
 					"settings":
 					{
-						"buffer_size": 2185,
+						"buffer_size": 3940,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								898,
-								898
+								2205,
+								2221
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 689.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/addPlanIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 3568,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2956,
+								2956
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "views/planAutoSettingIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 2863,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1178,
+								1178
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "views/addProcessIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 6139,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								571,
+								571
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1319.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "views/runningIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								205,
+								205
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "routes/productionPlan.js",
+					"settings":
+					{
+						"buffer_size": 7476,
+						"regions":
+						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+									[
+										4214,
+										4214
+									]
+								],
+								"scope": "bookmarks"
+							}
+						},
+						"selection":
+						[
+							[
+								1207,
+								1217
 							]
 						],
 						"settings":
@@ -1113,7 +1306,390 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 280.0,
+						"translation.y": 410.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "routes/orderSimulation.js",
+					"settings":
+					{
+						"buffer_size": 8853,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								362,
+								362
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 468.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "routes/productionProcess.js",
+					"settings":
+					{
+						"buffer_size": 15883,
+						"regions":
+						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+								],
+								"scope": "bookmarks"
+							},
+							"mark":
+							{
+								"flags": 144,
+								"icon": "dot",
+								"regions":
+								[
+								],
+								"scope": "mark"
+							}
+						},
+						"selection":
+						[
+							[
+								12872,
+								12872
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 1.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "routes/deviceControl.js",
+					"settings":
+					{
+						"buffer_size": 4097,
+						"regions":
+						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+									[
+										998,
+										998
+									],
+									[
+										1003,
+										1003
+									]
+								],
+								"scope": "bookmarks"
+							}
+						},
+						"selection":
+						[
+							[
+								3200,
+								3200
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1123.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "test/test.js",
+					"settings":
+					{
+						"buffer_size": 3607,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								628,
+								628
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "public/stylesheets/style.css",
+					"settings":
+					{
+						"buffer_size": 889,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								674,
+								674
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "views/main.ejs",
+					"settings":
+					{
+						"buffer_size": 5723,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								644,
+								644
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "views/piechartsIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 8146,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4253,
+								4253
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 606.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "views/barchartsIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 9272,
+						"regions":
+						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+									[
+										2462,
+										2462
+									],
+									[
+										9200,
+										9200
+									]
+								],
+								"scope": "bookmarks"
+							}
+						},
+						"selection":
+						[
+							[
+								4296,
+								4296
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 637.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "views/planConfigIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 14530,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13126,
+								13126
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2544.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "views/orderConfigIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 11080,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9867,
+								9867
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2792.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "views/processConfigIndex.ejs",
+					"settings":
+					{
+						"buffer_size": 12698,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1066,
+								1066
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "node_modules/trivial-port/serialport.js",
+					"settings":
+					{
+						"buffer_size": 5867,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1473,
+								1473
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 121.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1172,11 +1748,35 @@
 		[
 			[
 				"",
-				"winxintucao/views/classManageChangepwdIndex.ejs"
+				"views/planConfigIndex.ejs"
+			],
+			[
+				"procec",
+				"views/processConfigIndex.ejs"
+			],
+			[
+				"lanco",
+				"views/planConfigIndex.ejs"
+			],
+			[
+				"pro",
+				"routes/productionPlan.js"
 			],
 			[
 				"app",
-				"winxintucao/app.js"
+				"app.js"
+			],
+			[
+				"in",
+				"routes/index.js"
+			],
+			[
+				"a",
+				"app.js"
+			],
+			[
+				"or",
+				"routes/orderSimulation.js"
 			],
 			[
 				"inde",
@@ -1195,20 +1795,12 @@
 				"winxintucao/views/setSpeakerIndex.ejs"
 			],
 			[
-				"a",
-				"winxintucao/app.js"
-			],
-			[
 				"ve",
 				"views/version.ejs"
 			],
 			[
 				"api",
 				"routes/api.js"
-			],
-			[
-				"in",
-				"routes/index.js"
 			],
 			[
 				"ch",
@@ -1273,6 +1865,6 @@
 	"show_open_files": true,
 	"show_tabs": false,
 	"side_bar_visible": true,
-	"side_bar_width": 219.0,
+	"side_bar_width": 194.0,
 	"status_bar_visible": true
 }

@@ -16,6 +16,7 @@ var shell = require('shelljs');
 exports.prepareSerialPortList = prepareSerialPortList;
 exports.startSerialPortListening = startSerialPortListening;
 exports.getAllUSBDevices = _getAllUSBDevices;
+
 function prepareSerialPortList(){
 	_.each(_getAllUSBDevices(), function(_portName){
 		if(_.findWhere(serialPortList, {portName: _portName}) == null){
@@ -25,15 +26,24 @@ function prepareSerialPortList(){
 }
 
 function startSerialPortListening(_serialPortList, _handler){
+	// console.dir(_serialPortList);
 	_.each(_serialPortList, function(_serialPort){
 		if(!_.contains(_serialPort.handlers, _handler)){
 			_serialPort.handlers.push(_handler);
 		}
 		// _serialPort.handler = _handler;
 		if(_serialPort.port == null){
+			// if(_serialPort.portName == '/dev/cu.wch ch341 USB=>RS232 14260') return;
+			// if(_serialPort.portName == '/dev/cu.wch ch341 USB=>RS232 14250') return;
+			// if(_serialPort.portName == '/dev/cu.usbmodem142141') return;
+			// if(_serialPort.portName == '/dev/cu.usbmodem14271') return;
 			_startSinglePort(_serialPort);
 		}
 	});
+
+
+
+	// console.log('startSerialPortListening ok'.info);
 }
 /*
 	console.log('initialized serialPort ' + serialPortName + ' ...');
@@ -49,8 +59,14 @@ function startSerialPortListening(_serialPortList, _handler){
 	port.write(buffer);	
 */
 function _startSinglePort(_serialPort){
+	// return;
+	console.log('_startSinglePort =>'.info);
+	console.dir(_serialPort);
 	_serialPort.port = new SerialPort({serialPort:_serialPort.portName, baudRate: 9600});
-	_serialPort.port.initialize();
+	_serialPort.port.initialize(function(error){
+		console.log('error'.error);
+		console.dir(error);
+	});
 
 	_serialPort.port.on('error', function(){
 		console.log('reader error'.error);
@@ -60,7 +76,7 @@ function _startSinglePort(_serialPort){
 	_serialPort.port.on('close', function(){
 		console.log('reader close'.warn);
 		_serialPort.port = null;
-	});	
+	});		
 
 	_serialPort.port.on("data", function(chunk) {
 	    // console.log("Incoming:", chunk);
@@ -76,11 +92,7 @@ function _startSinglePort(_serialPort){
 				})
 			});
 		}
-		// if(_serialPort.handler != null){
-		// 	_.each(msges, function(_msg){
-		// 		_serialPort.handler(_msg, _serialPort);
-		// 	});
-		// }
+
 	    var lastIndex = _serialPort.data.lastIndexOf(']');
 	    if(lastIndex >= 0){
 		    console.log(('data to trip =>  ' + _serialPort.data).data);
@@ -88,11 +100,19 @@ function _startSinglePort(_serialPort){
 	    }
 	});	
 
+
+
+
+	// return;
+
+	return;
+
 }
 function _getAllUSBDevices(){
 	var portsFindInSys = _.union(shell.ls('/dev/cu.usbmodem*'), shell.ls('/dev/cu.*USB*'));//mac
 	// var portsFindInSys = _.union(shell.ls('/dev/ttyUSB*'), shell.ls('/dev/ttyACM*'));//linux
 	console.log('发现连接有以下设备：'.info);
+	// portsFindInSys.push('/dev/cu.Bluetooth-Incoming-Port');
 	console.dir(portsFindInSys);
 	return portsFindInSys;
 }

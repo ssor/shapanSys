@@ -27,10 +27,10 @@
         width: 100px;
       }
           td.highlight {
-              background-color: rgba(0,256,0, 0.1) !important;
+              background-color: rgba(0,256,0, 0.4) !important;
           }
           tr.highlight{
-              background-color: rgba(0,256,0, 0.1) !important;
+              background-color: rgba(0,256,0, 0.4) !important;
 
           }
     </style>
@@ -86,8 +86,21 @@
 
             // })
             // hideTip();
+            updateSaying();
+            setInterval(updateSaying, 30 * 1000);
+
             createWebSocket();
         });
+        function updateSaying(){
+            $.get('../getRandomSaying', function(_data){
+                var saying = JSON.parse(_data);
+                $('#sayingContent').text(saying.content);
+                $('#sayingAuthor').text(saying.author);
+            })
+        }
+        function openAboutWindow(){
+          $('#modalAbout').modal();
+        }    
         function showAddProcessFrame(){
           $.layer({
               type: 2,
@@ -203,13 +216,13 @@
                     <div style="margin-top: 48px; ">
 
                           <a class= "navFunc" style="right:525px;">教程 </a>
-                          <a class= "navFunc" style="right:470px;">订单 </a>
-                          <a class= "navFunc " style="right:415px;color: rgb(100,100,100);">流程 </a>
-                          <a class= "navFunc " style="right:360px;">计划 </a>
-                          <a class= "navFunc" style="right:240px;">实时时长统计 </a>
-                          <a class= "navFunc" style="right:120px;">实时比重统计 </a>
+                          <a class= "navFunc" style="right:470px;"  href="/orderConfigIndex" target="_blank">订单 </a>
+                          <a class= "navFunc " style="right:415px;color: rgb(100,100,100);" href="/processConfigIndex" target="_blank">流程 </a>
+                          <a class= "navFunc " style="right:360px;" href="/planConfigIndex" target="_blank">计划 </a>
+                          <a class= "navFunc" style="right:240px;"  href="/barchartsIndex" target="_blank">实时时长统计 </a>
+                          <a class= "navFunc" style="right:120px;"  href="/piechartsIndex" target="_blank">实时比重统计 </a>
                           <a class= "navFunc" style="right:70px;">导出 </a>
-                          <a class= "navFunc" style="right:20px;">关于 </a>
+                          <a class= "navFunc" style="right:20px;" onclick = "openAboutWindow()">关于 </a>
                      </div>
                 </div>
             </div>
@@ -218,12 +231,12 @@
     <div class="demo-panel-title"> 
         <!-- <h3  style="text-align:center;font-size:20px;color: white;margin-bottom: 10px;"></h3> -->
         <div class = "container">
-            <div class="row" style="margin-top:30px;">
+            <div class="row" style="margin-top:20px;">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12">
-                    <div style="text-align:left;font-size:30px;color: white;"> “学习丰田精益生产是格兰仕的必由之路。”</div>
+                    <div  id= "sayingContent" style=""> </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12">
-                    <div style="text-align:right;font-size:20px;color: white;margin-right:10px;margin-top: 15px;">——梁昭贤（格兰仕总裁）</div>
+                    <div  id="sayingAuthor" style=""></div>
                 </div>
                 
             </div>
@@ -248,7 +261,7 @@
           </table>
 
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="margin-top: 50px;text-align:center;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12" style="margin-top: 50px;margin-bottom: 50px;text-align:center;">
             <button type="button" class="btn btn-default btn-sm" onclick= "showAddProcessFrame()">添加</button>
             <button type="button" class="btn btn-default btn-sm" onclick = "deleteRow()">删除</button>
         </div>
@@ -259,11 +272,40 @@
       </div>
  -->    
     </div>
-    <footer>
-    </footer>
+<!--    <div class="container" style="margin-left: 0px; margin-right: 0px; max-width: 100%; background-color: rgb(240,240,240); max-width: 100%; min-height: 60px;position: absolute; width: 100%; bottom: 0px;">
+      <div class="row"  id = "row_container">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3" style=""> </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-md-lg-6" style="text-align: center; font-size: 15px; margin-bottom: 0px; margin-top: 20px; color: rgb(180,180,180);">
+              北京精益生产科技发展有限公司
+          </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-md-lg-3" style=""> </div>
+        
+      </div>
+    </div>  -->
     
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/layer/layer.min.js"></script>
     <script src="/dataTable/jquery.dataTables.js"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="modalAbout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: rgb(50,50,50); color: white;">
+            <button type="button" class="close" data-dismiss="modal"><!-- <span aria-hidden="true">&times;</span> --><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">关于</h4>
+          </div>
+          <div class="modal-body">
+            <div style="text-align: center; font-size: 19px; margin-top: 20px;">
+              精益生产沙盘V0.8
+            </div>
+          </div>
+          <div class="modal-footer" style="text-align: center;">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>
